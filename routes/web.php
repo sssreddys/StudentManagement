@@ -13,6 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get("/", \App\Livewire\Home::class)->name('home');
+// Route::get("/register", \App\Livewire\AdminRegister::class)->name('register');
+// Route::get("/login", \App\Livewire\AdminLogin::class)->name('login');
+
+Route::group(['middleware' => 'checkUserLogedIn'], function () {
+    Route::get("/login", \App\Livewire\AdminLogin::class)->name('login');
+    Route::get("/register", \App\Livewire\AdminRegister::class)->name('register');
+});
+Route::group(['middleware' => 'auth'], function () {
+    // Route::get("/", \App\Livewire\Home::class)->name('home');
+    // Route::get("/addTodo", \App\Livewire\AddTodo::class)->name('addTodo');
+    // Route::get("/todo/edit/{id}", \App\Livewire\EditTodo::class)->name('editTodo');
 });

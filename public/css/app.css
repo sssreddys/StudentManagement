@@ -10002,3 +10002,113 @@ h3 {
     border-color: #dee2e6;
   }
 }
+
+
+
+
+
+
+.pagination-container {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  margin-top: 20px;
+  /* Adjust spacing as needed */
+
+}
+
+
+
+.pagination-link {
+
+  cursor: pointer;
+
+  padding: 8px 12px;
+
+  margin-right: 5px;
+
+  border: 1px solid #333;
+  /* Border color changed to black (#333) */
+
+  border-radius: 4px;
+
+  color: rgb(1, 6, 61);
+  /* Default text color is black (#000) */
+
+  background-color: #fff;
+  /* Default background color is white (#fff) */
+
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+}
+
+
+
+.pagination-link:hover {
+
+  background-color: rgb(1, 6, 61);
+  /* Hover background color is black (#000) */
+
+  color: #fff;
+  /* Hover text color is white (#fff) */
+
+}
+
+
+
+.pagination-link.current {
+
+  background-color: rgb(1, 6, 61);
+  /* Current page background color is black (#000) */
+
+  color: #fff;
+  /* Current page text color is white (#fff) */
+
+  font-weight: bold;
+
+}
+
+
+
+.pagination-link.disabled {
+
+  cursor: not-allowed;
+
+  padding: 8px 12px;
+
+  margin-right: 5px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 4px;
+
+  color: #ccc;
+
+  background-color: #fff;
+
+}
+
+.avatar-circle {
+    width: 32px; /* Adjust the width and height as needed */
+    height: 32px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px; /* Adjust the font size as needed */
+    margin-right: 8px; /* Optional: Add some spacing between the avatar and the user's name */
+}
+
+
+.tab-bar {
+  display: flex;
+  justify-content: space-around;
+  background-color:white;
+  padding: 2px 0;
+}

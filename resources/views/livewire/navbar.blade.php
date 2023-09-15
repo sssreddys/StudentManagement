@@ -11,7 +11,14 @@
         @else
             
             <li class="nav-item ml-5 ">
-                <p class="text-white font-weight-bold mt-2">Welcome, <span class="text-warning">{{auth()->user()->name}}</span> </p>
+                <p class="text-white font-weight-bold mt-2">Welcome !
+                    <span class="avatar-circle" style="cursor: pointer;" wire:click="$emit('openUserProfileModal', {{ auth()->user()->id }})">
+                        {{ substr(ucfirst(auth()->user()->name), 0, 1) }}
+                    </span>
+                    <span class="text-warning">
+                        {{ ucfirst(auth()->user()->name) }}
+                    </span> 
+                </p>
             </li>   
             <li class="nav-item ml-5">
                 <livewire:logout />

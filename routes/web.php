@@ -30,4 +30,12 @@ Route::group(['middleware' => 'auth'], function () {
    // Route::get("/addTodo", \App\Livewire\AddTodo::class)->name('addTodo');
    // Route::get("/todo/edit/{id}", \App\Livewire\EditTodo::class)->name('editTodo');
 });
-
+Route::get('/teachers',function(){
+    return view('teachersdashboard_view');
+   });
+   Route::get('/profile',function(){
+    return view('teachersprofile_view');
+   });
+   Route::get('/edit',function(){
+    return view('teachersedit_view');
+   });

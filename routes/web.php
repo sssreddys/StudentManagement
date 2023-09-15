@@ -1,7 +1,10 @@
 <?php
 
+use App\Livewire\StaffControl;
+use App\Livewire\StudentRegistration;
+use App\Livewire\StaffRegistration;
+use App\Livewire\StudentControl;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,11 +26,19 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'checkAuth'], function () {
     Route::get("/login",  \App\Livewire\AdminLogin::class)->name('login');
     Route::get("/register",  \App\Livewire\AdminRegister::class)->name('register');
+    
+
 });
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get("/", \App\Livewire\Home::class)->name('home');
-   // Route::get("/addTodo", \App\Livewire\AddTodo::class)->name('addTodo');
-   // Route::get("/todo/edit/{id}", \App\Livewire\EditTodo::class)->name('editTodo');
-});
+    
+    Route::get('/StudentRegistration', StudentRegistration::class)->name('student-registration');
 
+    Route::get('/StaffRegistration', StaffRegistration::class)->name('staff-registration');
+
+
+    Route::get('/StudentControl', StudentControl::class)->name('student-control');
+
+    Route::get('/StaffControl', StaffControl::class)->name('staff-control');
+});

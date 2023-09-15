@@ -33,7 +33,6 @@ return new class extends Migration
                 $table->string('religion');
                 $table->string('password');
                 $table->string('image_path');
-                $table->string('remarks'); // Add image field
                 $table->rememberToken();
                 $table->timestamps();
         });

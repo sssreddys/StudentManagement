@@ -29,7 +29,6 @@ class StaffRegistration extends Component
     public $religion;
     public $password;
     public $image;
-    public $remarks;
 
     protected $rules = [
         'staff_id' => 'required|unique:staff',
@@ -52,7 +51,6 @@ class StaffRegistration extends Component
         'religion' => 'required',
         'password' => 'required',
         'image' => 'required',
-        'remarks'=>'required', // Adjust image validation rules
     ];
 
     public function submit()
@@ -85,10 +83,29 @@ class StaffRegistration extends Component
             'religion' => $this->religion,
             'password' => $this->password,
             'image_path' => $this->image,
-            'remarks'=>$this->remarks,
         ]);
 
         $this->reset();
+        $this->staff_id="";
+        $this->registration_date="";
+        $this->registration_number="";
+        $this->first_name="";
+        $this->last_name="";
+        $this->gender="";
+        $this->dob="";
+        $this->phone_no="";
+        $this->address="";
+        $this->email="";
+        $this->nationality="";
+        $this->alternate_phone_no="";
+        $this->aadhar_no="";
+        $this->staff_type="";
+        $this->profession="";
+        $this->work_experience="";
+        $this->qualification="";
+        $this->religion="";
+        $this->password="";
+        $this->image="";
         session()->flash('stf success', 'Staff Registered Successfully.');
         return redirect()->to('/');
 

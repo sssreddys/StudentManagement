@@ -1,5 +1,6 @@
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
-    <a class="navbar-brand ml-5" href="/">School Management System</a>
+<html>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+    <h1 style="margin-left: 28%;"><a href="/" style="color:white">School Management System</a></h1>
     <ul class="navbar-nav ml-auto mr-5">
         @guest
             <li class="nav-item">
@@ -10,6 +11,8 @@
             </li>
         @else
             
+        <div class="container">
+            <div class="row">
             <li class="nav-item ml-5 ">
                 <p class="text-white font-weight-bold mt-2">Welcome !
                     <span class="avatar-circle" style="cursor: pointer;" wire:click="$emit('openUserProfileModal', {{ auth()->user()->id }})">
@@ -23,20 +26,35 @@
             <li class="nav-item ml-5">
                 <livewire:logout />
             </li>  
-            <nav class="bg-slate-700 text-white">
+</div>
+        </div>        
+    <livewire:scripts />
+        @endguest
+    </ul>
+</nav>
+</html>
+<div>
+<html>    
+  <nav class="bg-slate-700 text-white">
     <div class="flex" style="display: flex; justify-content: space-between;">
-        <a style="color: white; font-family: sans-serif;" href="/StudentControl" class="nav-link">Student Control</a>
-        <a style="color: white; font-family: sans-serif;" href="/StaffControl" class="nav-linkk">Staff Control</a>
+    @guest
+    <div></div>
+        @else
+        <a style="color: white; font-family: sans-serif;" href="/StudentRegistration" class="nav-link">Student registration</a>
+        <a style="color: white; font-family: sans-serif;" href="/RetrieveStudentData" class="nav-link">Student Details</a>
+        <a style="color: white; font-family: sans-serif;" href="/StaffRegistration" class="nav-link">Staff Registration</a>
+        <a style="color: white; font-family: sans-serif;" href="/RetrieveStaffData" class="nav-link">Staff Details</a>
+        @endguest
     </div>
 </nav>
+</html>
 
-
+<div >
 @livewireScripts
 <style>
     .flex {
         background-color: black;
         padding: 10px;
-        border-radius: 5px;
     }
 
     .nav-link {
@@ -45,37 +63,29 @@
         text-decoration: none;
         transition: background-color 0.3s ease;
         border-radius: 5px;
-        margin-left: 5px;
-    }
-    .nav-linkk {
-        padding:5px;
-        /* Adjust padding as needed */
-        text-decoration: none;
-        transition: background-color 0.3s ease;
-        border-radius: 5px;
-        margin-right: 70%;
     }
 
     .nav-link:hover {
         background-color: purple;
-       width: auto;
     }
 
-    .nav-linkk:hover {
-        background-color: purple;
-       width: auto;
-    }
+
     .nav-link.active {
         background-color: indigo;
         /* Active background color */
     }
-    .nav-linkk.active {
-        background-color: indigo;
-        /* Active background color */
-    }
+
 </style>
-    <livewire:scripts />
- 
-        @endguest
-    </ul>
-</nav>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

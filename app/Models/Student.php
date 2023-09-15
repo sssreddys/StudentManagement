@@ -28,6 +28,5 @@ class Student extends Model
         'religion',
         'student_image_path',
         'password',
-        'remarks',
     ];
 }

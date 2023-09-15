@@ -1,9 +1,9 @@
 <?php
 
-use App\Livewire\StaffControl;
+use App\Livewire\RetrieveStaffData;
+use App\Livewire\RetrieveStudentData;
 use App\Livewire\StudentRegistration;
 use App\Livewire\StaffRegistration;
-use App\Livewire\StudentControl;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +37,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/StaffRegistration', StaffRegistration::class)->name('staff-registration');
 
-
-    Route::get('/StudentControl', StudentControl::class)->name('student-control');
-
-    Route::get('/StaffControl', StaffControl::class)->name('staff-control');
+    Route::get('/RetrieveStudentData', RetrieveStudentData::class)->name('retrieve-student-data');
+    Route::get('/RetrieveStaffData', RetrieveStaffData::class)->name('retrieve-staff-data');
 });

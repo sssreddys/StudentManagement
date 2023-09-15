@@ -28,7 +28,6 @@ class StudentRegistration extends Component
     public $religion;
     public $student_image;
     public $password;
-    public $remarks;
 
     protected $rules = [
         'std_id' => 'required|unique:students',
@@ -50,7 +49,6 @@ class StudentRegistration extends Component
         'religion' => 'required',
         'student_image' => 'required', 
         'password' => 'required',
-        'remarks'=>'required',
     ];
 
     public function submit()
@@ -82,11 +80,29 @@ class StudentRegistration extends Component
             'religion' => $this->religion,
             'student_image_path' => $this->student_image,
             'password'=>$this->password,
-            'remarks'=>$this->remarks,
         ]);
 
         // Reset form fields
         $this->reset();
+        $this->std_id="";
+        $this->registration_date="";
+        $this->registration_number="";
+        $this->std_first_name="";
+        $this->std_last_name="";
+        $this->std_gender="";
+        $this->std_dob="";
+        $this->std_father_name="";
+        $this->std_mother_name="";
+        $this->std_phone_no="";
+        $this->std_address="";
+        $this->std_email="";
+        $this->std_nationality="";
+        $this->std_alternate_phone_no="";
+        $this->std_aadhar_no="";
+        $this->class="";
+        $this->religion="";
+        $this->student_image="";
+        $this->password="";
 
         // Optionally, you can show a success message
         session()->flash('std success', 'Student Registered Successfully.');

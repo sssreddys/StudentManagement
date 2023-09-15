@@ -1,5 +1,5 @@
-<div class="container mt-5">
-    @livewire('student-control')
+
+<div class="container mt-5" >
     @if (session()->has('std success'))
     <div class="std-success" style="color:green;padding:10px;border-radius:10px;margin:0px;background-color:lightgreen">
         <b style="text-align: center;"> {{ session('std success') }}</b>
@@ -136,31 +136,28 @@
 
                         {{-- Upload Student Image --}}
                         <div class="form-group">
-                            <label for="student_image">Student Image</label>
-                            <input type="file" class="form-control-file" wire:model="student_image">
-                        </div>
-                        <div>
-                            @error('student_image') <span class="text-danger">{{ $message }}</span> @enderror
-                            @if ($student_image)
-    <img height="50" width="50"src="{{ $student_image->temporaryUrl() }}" alt="Preview" class="img-preview">
-@endif
-                        </div>
+    <label for="student_image">Student Image</label>
+    <input type="file" class="form-control-file" wire:model="student_image">
+</div>
+<div>
+    @error('student_image') <span class="text-danger">{{ $message }}</span> @enderror
+    @if ($student_image)
+        <img height="50" width="50" src="{{ $student_image->temporaryUrl() }}" alt="Preview" class="img-preview">
+        <!-- Custom text for file chosen -->
+        <span>{{ $student_image->getClientOriginalName() }}</span>
+    @endif
+</div>
 
-                        <div class="form-group" style="margin-top: 25px;">
-                            <label for="remarks">Remarks</label>
-                            <input type="text" class="form-control" wire:model="remarks">
-                            @error('remarks') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
 
-                        <div class="text-center mb-4">
+    <div class="text-center mb-4">
     <button type="submit" 
         class="btn btn-save" 
         :class="{'btn-primary': !isLoading, 'btn-secondary': isLoading}" 
         wire:loading.attr="disabled"
         wire:target="submit"
     >
-        <span wire:loading.remove class="text-loading">Save</span> <!-- Apply the custom "text-loading" class -->
-        <span wire:loading wire:target="submit">Loading...</span>
+        <span wire:loading.remove>Save</span>
+        <span wire:loading>Loading...</span>
     </button>
 </div>
 <style>
@@ -176,6 +173,7 @@
 }
 
 </style>
+
 
 
 

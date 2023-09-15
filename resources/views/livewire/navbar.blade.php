@@ -9,8 +9,7 @@
                 <a href="/register" class="nav-link  rounded-0 btn {{request()->is('register')?'btn-light text-dark':''}}">Register</a>
             </li>
         @else
-            
-            <li class="nav-item ml-5 ">
+             <li class="nav-item ml-5 ">
                 <p class="text-white font-weight-bold mt-2">Welcome !
                     <span class="avatar-circle" style="cursor: pointer;" wire:click="$emit('openUserProfileModal', {{ auth()->user()->id }})">
                         {{ substr(ucfirst(auth()->user()->name), 0, 1) }}
@@ -22,7 +21,8 @@
             </li>   
             <li class="nav-item ml-5">
                 <livewire:logout />
-            </li>   
+            </li> 
         @endguest
     </ul>
+    
 </nav>

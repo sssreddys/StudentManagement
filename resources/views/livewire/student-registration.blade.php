@@ -141,7 +141,9 @@
                         </div>
                         <div>
                             @error('student_image') <span class="text-danger">{{ $message }}</span> @enderror
-
+                            @if ($student_image)
+    <img height="50" width="50"src="{{ $student_image->temporaryUrl() }}" alt="Preview" class="img-preview">
+@endif
                         </div>
 
                         <div class="form-group" style="margin-top: 25px;">
@@ -152,15 +154,29 @@
 
                         <div class="text-center mb-4">
     <button type="submit" 
-        class="btn" 
+        class="btn btn-save" 
         :class="{'btn-primary': !isLoading, 'btn-secondary': isLoading}" 
         wire:loading.attr="disabled"
         wire:target="submit"
     >
-        <span wire:loading.remove :class="{'text-light': !isLoading, 'text-dark': isLoading}">Save</span>
+        <span wire:loading.remove class="text-loading">Save</span> <!-- Apply the custom "text-loading" class -->
         <span wire:loading wire:target="submit">Loading...</span>
     </button>
 </div>
+<style>
+    /* Custom CSS classes for the "Save" button */
+.btn-save {
+    background-color: #007bff; /* Change to your desired color */
+    color: #fff; /* Change to your desired color */
+}
+
+/* Custom CSS classes for the "Loading" text */
+.text-loading {
+    color: #ff9900; /* Change to your desired color */
+}
+
+</style>
+
 
 
 

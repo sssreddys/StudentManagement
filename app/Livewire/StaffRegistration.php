@@ -90,6 +90,7 @@ class StaffRegistration extends Component
 
         $this->reset();
         session()->flash('stf success', 'Staff Registered Successfully.');
+        return redirect()->to('/');
 
     }
     public function render()

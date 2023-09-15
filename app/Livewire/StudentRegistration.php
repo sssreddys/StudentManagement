@@ -90,6 +90,7 @@ class StudentRegistration extends Component
 
         // Optionally, you can show a success message
         session()->flash('std success', 'Student Registered Successfully.');
+        return redirect()->to('/');
     }
     public function render()
     {

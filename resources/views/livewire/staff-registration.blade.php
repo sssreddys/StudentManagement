@@ -162,18 +162,33 @@
                             <input type="file" class="form-control-file" wire:model="image">
                         </div>
                         @error('image') <span class="text-danger">{{ $message }}</span> @enderror
-
-                        <div class="text-center mb-4">
+                        @if ($image)
+    <img height="50" width="50"src="{{ $image->temporaryUrl() }}" alt="Preview" class="img-preview">
+@endif
+<div class="text-center mb-4">
     <button type="submit" 
-        class="btn btn-primary" 
-        wire:loading.attr="disabled" 
+        class="btn btn-save" 
+        :class="{'btn-primary': !isLoading, 'btn-secondary': isLoading}" 
+        wire:loading.attr="disabled"
         wire:target="submit"
-        :class="{'btn-primary': !isLoading, 'btn-secondary': isLoading}"
     >
         <span wire:loading.remove>Save</span>
-        <span wire:loading wire:target="submit">Loading...</span>
+        <span wire:loading>Loading...</span>
     </button>
 </div>
+<style>
+    /* Custom CSS classes for the "Save" button */
+.btn-save {
+    background-color: #007bff; /* Change to your desired color */
+    color: #fff; /* Change to your desired color */
+}
+
+/* Custom CSS classes for the "Loading" text */
+.text-loading {
+    color: #ff9900; /* Change to your desired color */
+}
+
+</style>
 
                     </form>
                 </div>

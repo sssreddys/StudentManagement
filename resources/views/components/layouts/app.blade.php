@@ -21,6 +21,7 @@
 
 <body>
     <livewire:navbar />
+    @livewireScripts
     {{$slot}}
 </body>
 

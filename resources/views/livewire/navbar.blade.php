@@ -11,8 +11,6 @@
             </li>
         @else
             
-        <div class="container">
-            <div class="row">
             <li class="nav-item ml-5 ">
                 <p class="text-white font-weight-bold mt-2">Welcome !
                     <span class="avatar-circle" style="cursor: pointer;" wire:click="$emit('openUserProfileModal', {{ auth()->user()->id }})">
@@ -77,16 +75,8 @@
     }
 
 </style>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
+    <livewire:scripts />
+ 
+        @endguest
+    </ul>
+</nav>

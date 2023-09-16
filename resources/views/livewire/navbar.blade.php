@@ -42,6 +42,7 @@
         @else
         <a style="color: white; font-family: sans-serif;" href="/StudentRegistration" class="nav-link">Student registration</a>
         <a style="color: white; font-family: sans-serif;" href="/RetrieveStudentData" class="nav-link">Student Details</a>
+        <a style="color: white; font-family: sans-serif;" href="/AddStudentMarks" class="nav-link">Add Students Marks</a>
         <a style="color: white; font-family: sans-serif;" href="/StaffRegistration" class="nav-link">Staff Registration</a>
         <a style="color: white; font-family: sans-serif;" href="/RetrieveStaffData" class="nav-link">Staff Details</a>
         @endguest

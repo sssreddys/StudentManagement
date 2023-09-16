@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\AddStudentMarks;
 use App\Livewire\RetrieveStaffData;
 use App\Livewire\RetrieveStudentData;
 use App\Livewire\StudentRegistration;
@@ -39,4 +40,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/RetrieveStudentData', RetrieveStudentData::class)->name('retrieve-student-data');
     Route::get('/RetrieveStaffData', RetrieveStaffData::class)->name('retrieve-staff-data');
+    Route::get('/AddStudentMarks', AddStudentMarks::class)->name('add-student-marks');
 });
+

@@ -32,6 +32,7 @@ return new class extends Migration
                 $table->string('religion');
                 $table->string('password');
                 $table->string('image_path');
+                $table->string('staff_status')->default('Active');
                 $table->rememberToken();
                 $table->timestamps();
         });

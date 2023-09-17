@@ -8,11 +8,16 @@ use Livewire\Component;
 class RetrieveStaffData extends Component
 {
     public $staffs;
-    public function mount(){
-        $this->staffs=Staff::all();
+    public function deleteStaff($id)
+    {
+        $staff = Staff::find($id);
+               if ($staff) {
+            $staff->update(['staff_status' => 'Inactive']);
+        }
     }
     public function render()
     {
+        $this->staffs=Staff::all();
         return view('livewire.retrieve-staff-data');
     }
 }

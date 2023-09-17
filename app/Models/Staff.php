@@ -30,5 +30,6 @@ class Staff extends Model
         'religion',
         'password',
         'image_path',
+        'staff_status'
     ];
 }

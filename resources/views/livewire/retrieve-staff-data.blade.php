@@ -1,4 +1,5 @@
-
+<div>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,13 +61,22 @@
                     <td style="text-align: center;">{{ $staff->phone_no }}</td>
                     <td style="text-align: center;">{{ $staff->email }}</td>
                     <td style="text-align: center;">{{ $staff->staff_type }}</td>
-            <td style="text-align: center;"><button style="background-color: blue;margin-bottom:5px;color:white;border-radius:5px;"><a style="color:white;" href="/EditStaffDetails/{{ $staff->staff_id }}">Edit</a></button>
-            @if($staff->staff_id)
-    <button class="btn btn-success">Active</button>
-@else
-    <button class="btn btn-danger">Inactive</button>
-@endif
-</td>
+                    <td style="text-align: center;">
+            @if($staff->staff_status == 'Active')
+            <button class="btn btn-primary">
+                <a style="color: white" href="/EditStaffDetails/{{ $staff->staff_id }}">Edit</a>
+            </button>
+                <button class="btn btn-success">Active</button>
+                <button class="btn btn-danger" wire:click="deleteStaff({{ $staff->staff_id }})">Delete</button>
+
+            @else
+            <button class="btn btn-primary" disabled>
+              Edit
+            </button>
+                <button class="btn btn-danger">Inactive</button>
+                <button class="btn btn-danger" disabled>Delete</button>
+            @endif
+        </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -74,3 +84,5 @@
     </div>
 </body>
 </html>
+
+</div>

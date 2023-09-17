@@ -1,6 +1,5 @@
 
 <div class="container mt-5">
-@livewire('staff-control')
 @if (session()->has('stf success'))
         <div class="stf-success" style="color:green;padding:10px;border-radius:10px;margin:0px;background-color:lightgreen">
         <b style="text-align: center;">  {{ session('stf success') }}</b>
@@ -150,13 +149,7 @@
                             <input type="password" class="form-control" wire:model="password" >
                             @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
-                        <div class="form-group" style="margin-top: 25px;">
-                            <label for="remarks">Remarks</label>
-                            <input type="text" class="form-control" wire:model="remarks">
-                            @error('remarks') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
-
-                        <!-- Upload Staff Image -->
+                                       <!-- Upload Staff Image -->
                         <div class="form-group">
                             <label for="image">Profile Image</label>
                             <input type="file" class="form-control-file" wire:model="image">
@@ -164,6 +157,7 @@
                         @error('image') <span class="text-danger">{{ $message }}</span> @enderror
                         @if ($image)
     <img height="50" width="50"src="{{ $image->temporaryUrl() }}" alt="Preview" class="img-preview">
+    <span>{{ $image->getClientOriginalName() }}</span>
 @endif
 <div class="text-center mb-4">
     <button type="submit" 

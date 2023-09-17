@@ -2648,7 +2648,7 @@ fieldset:disabled a.btn {
 
 .btn-dark {
   color: #fff;
-  background-color:rgb(118, 1, 211);
+  background-color:indigo;
   border-color: #343a40;
 }
 .btn-dark:hover {
@@ -6171,7 +6171,7 @@ button.bg-light:focus {
 }
 
 .bg-dark {
-  background-color: rgb(118, 1, 211) !important;
+  background-color:indigo
 }
 
 a.bg-dark:hover, a.bg-dark:focus,

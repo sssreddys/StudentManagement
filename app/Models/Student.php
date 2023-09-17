@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Student extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'std_id';
     protected $fillable = [
         'std_id',
         'registration_date',
@@ -28,6 +29,6 @@ class Student extends Model
         'religion',
         'student_image_path',
         'password',
-        'remarks',
+        'std_status'
     ];
 }

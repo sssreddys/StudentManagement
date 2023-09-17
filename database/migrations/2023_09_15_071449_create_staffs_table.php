@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('staff', function (Blueprint $table) {
-                $table->id();
-                $table->string('staff_id')->unique();
+            $table->id('staff_id');
                 $table->date('registration_date');
                 $table->string('registration_number')->unique();
                 $table->string('first_name');
@@ -33,7 +32,7 @@ return new class extends Migration
                 $table->string('religion');
                 $table->string('password');
                 $table->string('image_path');
-                $table->string('remarks'); // Add image field
+                $table->string('staff_status')->default('Active');
                 $table->rememberToken();
                 $table->timestamps();
         });

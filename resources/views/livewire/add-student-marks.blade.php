@@ -21,7 +21,7 @@
                             <select wire:model="student_id" id="student_id" class="form-control">
                                 <option value="">Select a student</option>
                                 @foreach ($students as $student)
-                                    <option value="{{ $student->id }}">{{ $student->std_first_name }} {{ $student->std_last_name }}</option>
+                                    <option value="{{ $student->std_id }}">{{ $student->std_first_name }} {{ $student->std_last_name }}</option>
                                 @endforeach
                             </select>
                             @error('student_id') <span class="text-danger">{{ $message }}</span> @enderror

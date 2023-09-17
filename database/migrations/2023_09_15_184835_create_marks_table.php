@@ -19,8 +19,8 @@ return new class extends Migration
             $table->unsignedBigInteger('staff_id')->nullable();
             $table->timestamps();
     
-            $table->foreign('std_id')->references('id')->on('students');
-            $table->foreign('staff_id')->references('id')->on('staff');
+            $table->foreign('std_id')->references('std_id')->on('students');
+            $table->foreign('staff_id')->references('staff_id')->on('staff');
         });
     }
     

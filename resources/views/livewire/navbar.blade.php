@@ -1,6 +1,6 @@
 <html>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
-    <h1 style="margin-left: 28%;"><a href="/" style="color:white">School Management System</a></h1>
+    <h2 style="margin-left: 28%;"><a href="/" style="color:white">School Management System</a></h2>
     <ul class="navbar-nav ml-auto mr-5">
         @guest
             <li class="nav-item">
@@ -41,6 +41,7 @@
         <a style="color: white; font-family: sans-serif;" href="/StudentRegistration" class="nav-link">Student registration</a>
         <a style="color: white; font-family: sans-serif;" href="/RetrieveStudentData" class="nav-link">Student Details</a>
         <a style="color: white; font-family: sans-serif;" href="/AddStudentMarks" class="nav-link">Add Students Marks</a>
+        <a style="color: white; font-family: sans-serif;" href="/StudentMarksDetails" class="nav-link">Student Marks Details</a>
         <a style="color: white; font-family: sans-serif;" href="/StaffRegistration" class="nav-link">Staff Registration</a>
         <a style="color: white; font-family: sans-serif;" href="/RetrieveStaffData" class="nav-link">Staff Details</a>
         @endguest
@@ -76,7 +77,5 @@
 
 </style>
     <livewire:scripts />
- 
-        @endguest
     </ul>
 </nav>

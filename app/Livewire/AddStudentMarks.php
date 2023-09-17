@@ -22,7 +22,7 @@ class AddStudentMarks extends Component
     public function saveMarks()
     {
         $this->validate([
-            'student_id' => 'required|exists:students,id',
+            'student_id' => 'required|exists:students,std_id',
             'subject' => 'required|string',
             'marks' => 'required|integer',
         ]);
@@ -33,10 +33,14 @@ class AddStudentMarks extends Component
             'subject' => $this->subject,
             'marks' => $this->marks,
         ]);
+         $this->student_id='';
+         $this->subject='';
+         $this->marks='';
 
         session()->flash('success', 'Marks added successfully.');
 
         // Clear the form fields
         $this->reset(['student_id', 'subject', 'marks']);
+        return redirect()->to('/');
     }
 }

@@ -19,7 +19,8 @@
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color:indigo;
+            color: white;
         }
 
         /* Style the image */
@@ -59,8 +60,13 @@
                     <td style="text-align: center;">{{ $staff->phone_no }}</td>
                     <td style="text-align: center;">{{ $staff->email }}</td>
                     <td style="text-align: center;">{{ $staff->staff_type }}</td>
-            <td style="text-align: center;"><button style="background-color: blue;border-radius:5px;color:white">Edit</button>
-        <button style="background-color: green;border-radius:5px;color:white">Active</button></td>
+            <td style="text-align: center;"><button style="background-color: blue;margin-bottom:5px;color:white;border-radius:5px;"><a style="color:white;" href="/EditStaffDetails/{{ $staff->staff_id }}">Edit</a></button>
+            @if($staff->staff_id)
+    <button class="btn btn-success">Active</button>
+@else
+    <button class="btn btn-danger">Inactive</button>
+@endif
+</td>
                 </tr>
                 @endforeach
             </tbody>

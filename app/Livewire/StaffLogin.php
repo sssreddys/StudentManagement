@@ -38,7 +38,7 @@ class StaffLogin extends Component
         {
             
             session()->flash('success', "You are Loggedin successfully!");
-            return redirect(route("staff"));
+            return redirect(route("home"));
         }
         else
         {

@@ -19,11 +19,8 @@ return [
 
     ],
 
-    'staff'=>[
-        'driver'=>'eloquent',
-        'model'=>App\Models\Staff::class,
-     ],
     
+     
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -50,6 +47,11 @@ return [
         'staff' => [
             'driver' => 'session',
             'provider' => 'staff',
+        ],
+
+        'student' => [
+            'driver' => 'session',
+            'provider' => 'student',
         ],
     ],
 
@@ -81,7 +83,10 @@ return [
             'model' => App\Models\Staff::class,
         ],
 
-
+        'student' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Student::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -118,6 +123,11 @@ return [
         'staff'=>[
             'driver'=>'eloquent',
             'model'=>App\Models\Staff::class,
+        ],
+
+        'student'=>[
+            'driver'=>'eloquent',
+            'model'=>App\Models\Student::class,
         ],
     ],
 

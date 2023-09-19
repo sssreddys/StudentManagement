@@ -3,10 +3,26 @@
     <h2 style="margin-left: 28%;"><a href="/" style="color:white">School Management System</a></h2>
     <ul class="navbar-nav ml-auto mr-5">
         @guest
-            <li class="nav-item">
-                <a href="/login" class="nav-link rounded-0 btn {{request()->is('login')?'btn-light text-dark':''}}">Login</a>
-            </li>
-            <li class="nav-item">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Login
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="loginDropdown">
+                        <a class="dropdown-item" href="/StudentLogin">Student Login</a>
+                        <a class="dropdown-item" href="/StaffLogin">Staff Login</a>
+                        <a class="dropdown-item" href="/AdminLogin">Admin Login</a>
+                    </div>
+                </li>
+            </ul>
+    </nav>
+
+    <!-- Include Bootstrap JavaScript and jQuery (required for dropdown) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+            <li class="nav-item" style="margin-top: 8px;">
                 <a href="/register" class="nav-link  rounded-0 btn {{request()->is('register')?'btn-light text-dark':''}}">Register</a>
             </li>
         @else

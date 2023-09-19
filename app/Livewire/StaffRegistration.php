@@ -61,6 +61,7 @@ class StaffRegistration extends Component
             $imagePath = $this->image->store('public/staff-images');
             $this->image = str_replace('public/', '', $imagePath);
         }
+        $passwordHash = password_hash($this->password, PASSWORD_DEFAULT);
 
         Staff::create([
             'staff_id' => $this->staff_id,
@@ -81,7 +82,7 @@ class StaffRegistration extends Component
             'work_experience' => $this->work_experience,
             'qualification' => $this->qualification,
             'religion' => $this->religion,
-            'password' => $this->password,
+            'password' => $passwordHash,
             'image_path' => $this->image,
         ]);
 

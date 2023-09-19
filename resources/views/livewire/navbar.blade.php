@@ -38,7 +38,7 @@
     @guest
     <div></div>
         @else
-        <a style="color: white; font-family: sans-serif;" href="/StudentRegistration" class="nav-link">Student registration</a>
+        <a style="color: white; font-family: sans-serif;" href="/StudentRegistration" class="nav-link">Student Registration</a>
         <a style="color: white; font-family: sans-serif;" href="/RetrieveStudentData" class="nav-link">Student Details</a>
         <a style="color: white; font-family: sans-serif;" href="/AddStudentMarks" class="nav-link">Add Students Marks</a>
         <a style="color: white; font-family: sans-serif;" href="/StudentMarksDetails" class="nav-link">Student Marks Details</a>
@@ -70,9 +70,8 @@
     }
 
 
-    .nav-link.active {
+    .nav-link:active {
         background-color: indigo;
-        /* Active background color */
     }
 
 </style>

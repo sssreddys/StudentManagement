@@ -27,11 +27,13 @@
                             </div>
 
                             {{-- Registration Details --}}
+                       
                             <div class="form-group" style="margin-bottom: 25px;">
-                                <label for="registration_date">Registration Date</label>
-                                <input type="date" class="form-control" wire:model="registration_date">
-                                @error('registration_date') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
+                                    <label for="registration_date">Registration Date</label>
+                                    <input type="date" class="form-control" wire:model="registration_date" max="{{ date('Y-m-d') }}">
+                                    @error('registration_date') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+
                             <div class="form-group" style="margin-bottom: 25px;">
                                 <label for="registration_number">Registration Number</label>
                                 <input type="text" class="form-control" wire:model="registration_number">
@@ -55,11 +57,11 @@
                                 <div class="form-group" style="margin-bottom: 25px;">
                                     <label>Gender</label><br>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" wire:model="std_gender" value="male" id="maleRadio" name="gender">
+                                        <input class="form-check-input" type="radio" wire:model="std_gender" value="Male" id="maleRadio" name="gender">
                                         <label class="form-check-label" for="maleRadio">Male</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" wire:model="std_gender" value="female" id="femaleRadio" name="gender">
+                                        <input class="form-check-input" type="radio" wire:model="std_gender" value="Female" id="femaleRadio" name="gender">
                                         <label class="form-check-label" for="femaleRadio">Female</label>
                                     </div>
                                 </div>
@@ -68,12 +70,12 @@
                                 </div>
 
 
-
                                 <div class="form-group" style="margin-bottom: 25px;">
                                     <label for="std_dob">Date of Birth</label>
-                                    <input type="date" class="form-control" wire:model="std_dob">
+                                    <input type="date" class="form-control" wire:model="std_dob" max="{{ date('Y-m-d') }}">
                                     @error('std_dob') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
+
 
                                 <div class="form-group" style="margin-bottom: 25px;">
                                     <label for="std_father_name">Father's Name</label>

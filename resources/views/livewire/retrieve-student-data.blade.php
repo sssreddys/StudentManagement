@@ -56,22 +56,26 @@
                     <td style="text-align: center;">{{ $student->std_id }}</td>
                     <td style="text-align: center;">{{ $student->std_first_name }} {{ $student->std_last_name }}</td>
                     <td style="text-align: center;">{{ $student->std_gender }}</td>
-                    <td style="text-align: center;">{{ $student->std_dob }}</td>
+                    <td style="text-align: center;">{{ date('d-m-Y', strtotime($student->std_dob)) }}</td>
                     <td style="text-align: center;">{{ $student->class }}</td>
                     <td style="text-align: center;">{{ $student->std_phone_no }}</td>
                     <td style="text-align: center;">
             @if($student->std_status == 'Active')
+            <div style="width: 200px;margin-left:10px">
             <button class="btn btn-primary">
                 <a style="color: white" href="/EditStudentDetails/{{ $student->std_id }}">Edit</a>
             </button>
                 <button class="btn btn-success">Active</button>
                 <button class="btn btn-danger" wire:click="deleteStudent({{ $student->std_id }})">Delete</button>
+            </div>
             @else
+            <div style="width:220px">
             <button class="btn btn-primary" disabled>
               Edit
             </button>
                 <button class="btn btn-danger">Inactive</button>
                 <button class="btn btn-danger" disabled>Delete</button>
+            </div>
             @endif
         </td>
                 </tr>
@@ -81,19 +85,4 @@
     </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>

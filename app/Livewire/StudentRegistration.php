@@ -59,7 +59,7 @@ class StudentRegistration extends Component
             $imagePath = $this->student_image->store('public/student-images');
             $this->student_image = str_replace('public/', '', $imagePath);
         }
-
+        $passwordHash = password_hash($this->password, PASSWORD_DEFAULT);
         Student::create([
             'std_id' => $this->std_id,
             'registration_date' => $this->registration_date,
@@ -79,7 +79,7 @@ class StudentRegistration extends Component
             'class' => $this->class,
             'religion' => $this->religion,
             'student_image_path' => $this->student_image,
-            'password'=>$this->password,
+            'password'=>$passwordHash,
         ]);
 
         // Reset form fields

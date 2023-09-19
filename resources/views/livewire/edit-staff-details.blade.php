@@ -47,11 +47,11 @@
                         <div class="form-group" style="margin-bottom: 25px;">
                             <label>Gender</label><br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" wire:model="gender" value="male" id="maleRadio" name="gender">
+                                <input class="form-check-input" type="radio" wire:model="gender" value="Male" id="maleRadio" name="gender">
                                 <label class="form-check-label" for="maleRadio">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" wire:model="gender" value="female" id="femaleRadio" name="gender">
+                                <input class="form-check-input" type="radio" wire:model="gender" value="Female" id="femaleRadio" name="gender">
                                 <label class="form-check-label" for="femaleRadio">Female</label>
                             </div>
                         </div>

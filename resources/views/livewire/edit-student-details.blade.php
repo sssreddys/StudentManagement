@@ -48,11 +48,11 @@
                             <div class="form-group" style="margin-bottom: 25px;">
                                 <label for="std_gender">Gender</label><br>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" wire:model="std_gender" value="male" id="maleRadio" name="gender">
+                                    <input class="form-check-input" type="radio" wire:model="std_gender" value="Male" id="maleRadio" name="gender">
                                     <label class="form-check-label" for="maleRadio">Male</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" wire:model="std_gender" value="female" id="femaleRadio" name="gender">
+                                    <input class="form-check-input" type="radio" wire:model="std_gender" value="Female" id="femaleRadio" name="gender">
                                     <label class="form-check-label" for="femaleRadio">Female</label>
                                 </div>
                                 @error('std_gender') <span class="text-danger">{{ $message }}</span> @enderror

@@ -15,8 +15,7 @@
     <livewire:scripts />
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" data-turbolinks-track="reload">
-    <livewire:styles />
-    
+    <livewire:styles />  
 </head>
 
 <body>

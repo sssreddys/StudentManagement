@@ -57,24 +57,28 @@
                     <td style="text-align: center;">{{ $staff->staff_id }}</td>
                     <td style="text-align: center;">{{ $staff->first_name }} {{ $staff->last_name }}</td>
                     <td style="text-align: center;">{{ $staff->gender }}</td>
-                    <td style="text-align: center;">{{ $staff->dob }}</td>
+                    <td style="text-align: center;">{{ date('d-m-Y', strtotime($staff->dob)) }}</td>
                     <td style="text-align: center;">{{ $staff->phone_no }}</td>
                     <td style="text-align: center;">{{ $staff->email }}</td>
                     <td style="text-align: center;">{{ $staff->staff_type }}</td>
                     <td style="text-align: center;">
             @if($staff->staff_status == 'Active')
+            <div style="width:200px;text-align:center;margin-left:10px">
             <button class="btn btn-primary">
                 <a style="color: white" href="/EditStaffDetails/{{ $staff->staff_id }}">Edit</a>
             </button>
                 <button class="btn btn-success">Active</button>
                 <button class="btn btn-danger" wire:click="deleteStaff({{ $staff->staff_id }})">Delete</button>
+            </div>
 
             @else
+            <div style="width: 220px;text-align:center">
             <button class="btn btn-primary" disabled>
               Edit
             </button>
                 <button class="btn btn-danger">Inactive</button>
                 <button class="btn btn-danger" disabled>Delete</button>
+            </div>
             @endif
         </td>
                 </tr>

@@ -16,8 +16,14 @@ return [
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
+
     ],
 
+    'staff'=>[
+        'driver'=>'eloquent',
+        'model'=>App\Models\Staff::class,
+     ],
+    
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -39,6 +45,11 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+
+        'staff' => [
+            'driver' => 'session',
+            'provider' => 'staff',
         ],
     ],
 
@@ -64,6 +75,12 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+
+        'staff' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Staff::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',
@@ -96,6 +113,11 @@ return [
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        
+        'staff'=>[
+            'driver'=>'eloquent',
+            'model'=>App\Models\Staff::class,
         ],
     ],
 

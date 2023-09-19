@@ -31,7 +31,7 @@ Route::group(['middleware' => 'checkAuth'], function () {
     Route::get("/login",  \App\Livewire\AdminLogin::class)->name('login');
     Route::get("/register",  \App\Livewire\AdminRegister::class)->name('register');
     
-
+    Route::get("/staff", \App\Livewire\StaffLogin::class)->name('staff');
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -45,4 +45,3 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/EditStaffDetails/{id}', EditStaffDetails::class)->name('edit-staff-details');
     Route::get('/StudentMarksDetails', StudentMarksDetails::class)->name('std-marks-details');
 });
-

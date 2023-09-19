@@ -18,10 +18,7 @@ class AdminLogin extends Component
             "form.email"=> 'required|email',
             "form.password"=> "required"
         ]);
-
-
-
-        Auth::attempt($this->form);
+      Auth::attempt($this->form);
         if (Auth::attempt($this->form))
         {
             

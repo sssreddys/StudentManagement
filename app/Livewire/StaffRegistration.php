@@ -20,7 +20,6 @@ class StaffRegistration extends Component
     public $address;
     public $email;
     public $nationality;
-    public $alternate_phone_no;
     public $aadhar_no;
     public $staff_type;
     public $profession;
@@ -38,11 +37,10 @@ class StaffRegistration extends Component
         'last_name' => 'required',
         'gender' => 'required',
         'dob' => 'required|date',
-        'phone_no' => 'required',
+        'phone_no' => 'required|unique:staff',
         'address' => 'required',
         'email' => 'required|email|unique:staff',
         'nationality' => 'required',
-        'alternate_phone_no' => 'required',
         'aadhar_no' => 'required|unique:staff',
         'staff_type' => 'required',
         'profession' => 'required',
@@ -75,7 +73,6 @@ class StaffRegistration extends Component
             'address' => $this->address,
             'email' => $this->email,
             'nationality' => $this->nationality,
-            'alternate_phone_no' => $this->alternate_phone_no,
             'aadhar_no' => $this->aadhar_no,
             'staff_type' => $this->staff_type,
             'profession' => $this->profession,
@@ -98,7 +95,6 @@ class StaffRegistration extends Component
         $this->address="";
         $this->email="";
         $this->nationality="";
-        $this->alternate_phone_no="";
         $this->aadhar_no="";
         $this->staff_type="";
         $this->profession="";
@@ -108,7 +104,7 @@ class StaffRegistration extends Component
         $this->password="";
         $this->image="";
         session()->flash('stf success', 'Staff Registered Successfully.');
-        return redirect()->to('/');
+        return redirect()->to('/StaffRegistration');
 
     }
     public function render()

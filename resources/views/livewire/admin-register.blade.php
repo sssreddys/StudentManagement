@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-6 mx-auto p-4 px-5 mt-5">
             <form wire:submit.prevent="handleRegister">
-                <p class="display-6 text-center">Admin Register</p>
+                <p class="display-6 text-center" style="font-family:Montserrat;font-weight:bold">Admin Register</p>
                 <hr class="bg-white"/>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Name" wire:model="form.name" />

@@ -30,7 +30,6 @@ class EditStudentDetails extends Component
     public $class;
     public $religion;
     public $student_image;
-    public $password;
 
 
     public function mount($std_id)
@@ -55,7 +54,6 @@ class EditStudentDetails extends Component
             $this->std_aadhar_no = $this->student->std_aadhar_no;
             $this->class = $this->student->class;
             $this->religion = $this->student->religion;
-            $this->password=$this->student->password;
             $this->student_image = $this->student->student_image_path;
         }
     }
@@ -64,6 +62,7 @@ class EditStudentDetails extends Component
     {
 
         if ($this->student) {
+
             // Update only the fields that were changed
             $this->student->update(array_filter([
                 'registration_date' => $this->registration_date,
@@ -83,7 +82,6 @@ class EditStudentDetails extends Component
                 'std_aadhar_no' => $this->std_aadhar_no,
                 'class' => $this->class,
                 'religion' => $this->religion,
-                'password'=>$this->password,
                 'student_image_path'=>$this->student_image
             ]));
 
@@ -94,8 +92,8 @@ class EditStudentDetails extends Component
             
         }
 
-        session()->flash('std_success', 'Student information updated successfully.');
-        return redirect()->to('/'); // Redirect to the desired page after update
+        session()->flash('std_success', 'Student Details Updated Successfully.');
+        return redirect()->to('/RetrieveStudentData'); // Redirect to the desired page after update
     }
     public function render()
     {

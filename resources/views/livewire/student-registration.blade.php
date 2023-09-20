@@ -2,9 +2,10 @@
 
     <div class="container mt-5">
         @if (session()->has('std success'))
-        <div class="std-success" style="color:green;padding:10px;border-radius:10px;margin:0px;background-color:lightgreen">
-            <b style="text-align: center;"> {{ session('std success') }}</b>
+        <div class="std-success" style="width:608px;text-align: center; color: green; padding: 10px; border-radius: 10px; margin: 0 auto; background-color: lightgreen; display: flex; justify-content: center; align-items: center;">
+            <b>{{ session('std success') }}</b>
         </div>
+
         <script>
             setTimeout(function() {
                 document.querySelector('.std-success').style.display = 'none';
@@ -14,8 +15,8 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header" style="background-color:indigo">
-                        <h5 class="mb-0" style="text-align: center;color:white">Student Registration Form</h5>
+                    <div class="card-header" style="background-color:indigo;">
+                        <h5 class="mb-0" style="text-align: center;color:white;font-family:Montserrat">Student Registration Form</h5>
                     </div>
                     <div class="card-body">
                         <form wire:submit.prevent="submit" enctype="multipart/form-data">
@@ -27,12 +28,12 @@
                             </div>
 
                             {{-- Registration Details --}}
-                       
+
                             <div class="form-group" style="margin-bottom: 25px;">
-                                    <label for="registration_date">Registration Date</label>
-                                    <input type="date" class="form-control" wire:model="registration_date" max="{{ date('Y-m-d') }}">
-                                    @error('registration_date') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
+                                <label for="registration_date">Registration Date</label>
+                                <input type="date" class="form-control" wire:model="registration_date" max="{{ date('Y-m-d') }}">
+                                @error('registration_date') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
 
                             <div class="form-group" style="margin-bottom: 25px;">
                                 <label for="registration_number">Registration Number</label>
@@ -108,11 +109,6 @@
                                     @error('std_nationality') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="form-group" style="margin-bottom: 25px;">
-                                    <label for="std_alternate_phone_no">Alternate Phone Number</label>
-                                    <input type="text" class="form-control" wire:model="std_alternate_phone_no">
-                                    @error('std_alternate_phone_no') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-                                <div class="form-group" style="margin-bottom: 25px;">
                                     <label for="std_aadhar_no">Aadhar Number</label>
                                     <input type="text" class="form-control" wire:model="std_aadhar_no">
                                     @error('std_aadhar_no') <span class="text-danger">{{ $message }}</span> @enderror
@@ -141,7 +137,11 @@
                                 <div class="form-group" style="margin-bottom: 25px;">
                                     <label for="student_image">Student Image</label>
                                     <input type="file" class="form-control-file" wire:model="student_image">
+                                    @error('student_image') <span class="text-danger">{{ $message }}</span> @enderror
+
                                 </div>
+
+
                                 <div>
                                     @if ($student_image)
                                     @if (is_string($student_image))
@@ -158,12 +158,27 @@
 
 
 
-                                <div class="text-center mb-4">
-                                    <button type="submit" class="btn btn-save" :class="{'btn-primary': !isLoading, 'btn-secondary': isLoading}" wire:loading.attr="disabled" wire:target="submit">
-                                        <span wire:loading.remove>Save</span>
-                                        <span wire:loading>Loading...</span>
-                                    </button>
-                                </div>
+
+                                <div style="text-align: center;">
+                                <!-- Your Livewire component content -->
+                                <button type="submit" wire:loading.attr="disabled" class="btn btn-primary">Save</button>
+                                <p wire:loading>Loading...</p>
+                                <p wire:loading.remove>Not loading</p>
+                            </div>
+                            <div wire:debug></div>
+                            <style>
+                                button[wire\:loading] {
+                                    opacity: 0.5;
+                                    /* Reduce opacity during loading */
+                                    cursor: not-allowed;
+                                    /* Change cursor during loading */
+                                }
+
+                                p {
+                                    color: green;
+                                    font-weight: bold;
+                                }
+                            </style>
                         </form>
                     </div>
                 </div>

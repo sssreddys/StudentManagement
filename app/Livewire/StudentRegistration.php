@@ -22,7 +22,6 @@ class StudentRegistration extends Component
     public $std_address;
     public $std_email;
     public $std_nationality;
-    public $std_alternate_phone_no;
     public $std_aadhar_no;
     public $class;
     public $religion;
@@ -39,11 +38,10 @@ class StudentRegistration extends Component
         'std_dob' => 'required|date',
         'std_father_name' => 'required',
         'std_mother_name' => 'required',
-        'std_phone_no' => 'required',
+        'std_phone_no' => 'required|unique:students',
         'std_address' => 'required',
         'std_email' => 'required|email|unique:students',
         'std_nationality' => 'required',
-        'std_alternate_phone_no' => 'required',
         'std_aadhar_no' => 'required|unique:students',
         'class' => 'required',
         'religion' => 'required',
@@ -74,7 +72,6 @@ class StudentRegistration extends Component
             'std_address' => $this->std_address,
             'std_email' => $this->std_email,
             'std_nationality' => $this->std_nationality,
-            'std_alternate_phone_no' => $this->std_alternate_phone_no,
             'std_aadhar_no' => $this->std_aadhar_no,
             'class' => $this->class,
             'religion' => $this->religion,
@@ -97,7 +94,6 @@ class StudentRegistration extends Component
         $this->std_address="";
         $this->std_email="";
         $this->std_nationality="";
-        $this->std_alternate_phone_no="";
         $this->std_aadhar_no="";
         $this->class="";
         $this->religion="";
@@ -106,7 +102,7 @@ class StudentRegistration extends Component
 
         // Optionally, you can show a success message
         session()->flash('std success', 'Student Registered Successfully.');
-        return redirect()->to('/');
+        return redirect()->to('/StudentRegistration');
     }
     public function render()
     {

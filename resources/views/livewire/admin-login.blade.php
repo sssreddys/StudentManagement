@@ -10,7 +10,7 @@
                 </div>
             @endif
             <form wire:submit.prevent="handleLogin">
-                <p class="display-6 text-center">Admin Login</p>
+                <p class="display-6 text-center" style="font-family:Montserrat;font-weight:bold">Admin Login</p>
                 <hr class="bg-white"/>
                 @if($error)
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">

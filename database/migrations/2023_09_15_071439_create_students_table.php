@@ -25,7 +25,6 @@ return new class extends Migration
             $table->string('std_address');
             $table->string('std_email')->unique();
             $table->string('std_nationality');
-            $table->string('std_alternate_phone_no');
             $table->string('std_aadhar_no')->unique();
             $table->string('class');
             $table->string('religion');

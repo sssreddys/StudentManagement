@@ -27,12 +27,12 @@ class EditStaffDetails extends Component
     public $work_experience;
     public $qualification;
     public $religion;
-    public $password;
     public $image;
     public $staff;
 
     public function mount($id)
     {
+
         $this->staff = Staff::find($id);
         if ($this->staff) {
             $this->registration_date = $this->staff->registration_date;
@@ -52,7 +52,6 @@ class EditStaffDetails extends Component
             $this->work_experience = $this->staff->work_experience;
             $this->qualification = $this->staff->qualification;
             $this->religion = $this->staff->religion;
-            $this->password = $this->staff->password;
             $this->image = $this->staff->image_path;
         }
     }
@@ -61,6 +60,7 @@ class EditStaffDetails extends Component
     {
 
         if ($this->staff) {
+
             $this->staff->update([
                 'registration_date' => $this->registration_date,
                 'registration_number' => $this->registration_number,
@@ -79,7 +79,6 @@ class EditStaffDetails extends Component
                 'work_experience' => $this->work_experience,
                 'qualification' => $this->qualification,
                 'religion' => $this->religion,
-                'password' => $this->password,
                 'image_path' => $this->image,
             ]);
             if ($this->image instanceof \Illuminate\Http\UploadedFile) {
@@ -88,8 +87,8 @@ class EditStaffDetails extends Component
             }
         }
 
-        session()->flash('stf_success', 'Staff information updated successfully.');
-        return redirect()->to('/');
+        session()->flash('stf_success', 'Staff Details Updated Successfully.');
+        return redirect()->to('/RetrieveStaffData');
     }
     public function render()
     {

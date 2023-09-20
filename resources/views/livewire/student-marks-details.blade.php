@@ -1,47 +1,51 @@
 <div>
-<div class="container mt-4">
-        <h5 style="text-align: center;"><b>Student Marks Details Table</b></h5>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Student ID</th>
-                    <th>Student Name</th>
-                    <th>Teacher ID</th>
-                    <th>Class</th>
-                    <th>English</th>
-                    <th>Hindi</th>
-                    <th>Telugu</th>
-                    <th>Maths</th>
-                    <th>Science</th>
-                    <th>Biology</th>
-                    <th>Social</th>
-                    <th>Computer</th>
-                    <th>Total Marks</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($studentMarks as $student)
-                <tr>
-                    <td>{{ $student->student_id }}</td>
-                    <td>{{ $student->student_name }}</td>
-                    <td>{{ $student->teacher_id }}</td>
-                    <td>{{ $student->class }}</td>
-                    <td>{{ $student->english_marks }}</td>
-                    <td>{{ $student->hindi_marks }}</td>
-                    <td>{{ $student->telugu_marks }}</td>
-                    <td>{{ $student->maths_marks }}</td>
-                    <td>{{ $student->science_marks }}</td>
-                    <td>{{ $student->biology_marks }}</td>
-                    <td>{{ $student->social_marks }}</td>
-                    <td>{{ $student->computer_marks }}</td>
-                    <td>{{ $student->total_marks }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <div class="container mt-4">
+        <h5 style="text-align: center;margin-left:8%;font-family:Montserrat"><b>Student Marks Details Table</b></h5>
+        @if(count($studentMarks) > 0)
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;font-family:Montserrat">Student ID</th>
+                        <th style="text-align: center;font-family:Montserrat">Student Name</th>
+                        <th style="text-align: center;font-family:Montserrat">Teacher ID</th>
+                        <th style="text-align: center;font-family:Montserrat">Class</th>
+                        <th style="text-align: center;font-family:Montserrat">English</th>
+                        <th style="text-align: center;font-family:Montserrat">Hindi</th>
+                        <th style="text-align: center;font-family:Montserrat">Telugu</th>
+                        <th style="text-align: center;font-family:Montserrat">Maths</th>
+                        <th style="text-align: center;font-family:Montserrat">Science</th>
+                        <th style="text-align: center;font-family:Montserrat">Biology</th>
+                        <th style="text-align: center;font-family:Montserrat">Social</th>
+                        <th style="text-align: center;font-family:Montserrat">Computer</th>
+                        <th style="text-align: center;font-family:Montserrat">Total Marks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($studentMarks as $student)
+                    <tr>
+                        <td style="text-align: center;font-family:Montserrat">{{ $student->student_id }}</td>
+                        <td style="text-align: center;font-family:Montserrat">{{ $student->student_name }}</td>
+                        <td style="text-align: center;font-family:Montserrat">{{ $student->teacher_id }}</td>
+                        <td style="text-align: center;font-family:Montserrat">{{ $student->class }}</td>
+                        <td style="text-align: center;font-family:Montserrat">{{ $student->english_marks }}</td>
+                        <td style="text-align: center;font-family:Montserrat">{{ $student->hindi_marks }}</td>
+                        <td style="text-align: center;font-family:Montserrat">{{ $student->telugu_marks }}</td>
+                        <td style="text-align: center;font-family:Montserrat">{{ $student->maths_marks }}</td>
+                        <td style="text-align: center;font-family:Montserrat">{{ $student->science_marks }}</td>
+                        <td style="text-align: center;font-family:Montserrat">{{ $student->biology_marks }}</td>
+                        <td style="text-align: center;font-family:Montserrat">{{ $student->social_marks }}</td>
+                        <td style="text-align: center;font-family:Montserrat">{{ $student->computer_marks }}</td>
+                        <td style="text-align: center;font-family:Montserrat">{{ $student->total_marks }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @else
+            <p style="text-align: center;margin-left:8%;font-family:Montserrat">No records found.</p>
+        @endif
     </div>
     <style>
-     table {
+        table {
             width: 100%;
             border-collapse: collapse;
         }
@@ -53,7 +57,7 @@
         }
 
         th {
-            background-color:indigo;
+            background-color: indigo;
             color: white;
         }
 

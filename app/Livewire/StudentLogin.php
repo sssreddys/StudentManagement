@@ -36,7 +36,7 @@ class StudentLogin extends Component
         {
             
             session()->flash('success', "You are Loggedin Successfully!");
-            return redirect(route("student"));
+            return redirect(route("student-dashboard"));
         }
         else
         {

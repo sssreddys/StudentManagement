@@ -8,6 +8,11 @@ use App\Livewire\RetrieveStudentData;
 use App\Livewire\StudentRegistration;
 use App\Livewire\StaffRegistration;
 use App\Livewire\StudentMarksDetails;
+use App\Livewire\TeacherDashboard;
+use App\Livewire\StudentDashboard;
+use App\Livewire\StudentReport;
+use App\Livewire\StudentProfile;
+use App\Livewire\TeacherReport;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +41,7 @@ Route::group(['middleware' => 'checkAuth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get("/", \App\Livewire\Home::class)->name('home');
-    Route::get("/register",  \App\Livewire\AdminRegister::class)->name('register');
+Route::get("/register",  \App\Livewire\AdminRegister::class)->name('register');
     Route::get('/StudentRegistration', StudentRegistration::class)->name('student-registration');
     Route::get('/StaffRegistration', StaffRegistration::class)->name('staff-registration');
     Route::get('/RetrieveStaffData', RetrieveStaffData::class)->name('retrieve-staff-data');
@@ -45,3 +50,26 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/EditStaffDetails/{id}', EditStaffDetails::class)->name('edit-staff-details');
     Route::get('/StudentMarksDetails', StudentMarksDetails::class)->name('std-marks-details');
 });
+
+
+
+Route::get('/teacher-dashboard', function () {
+    return view('livewire.teacher-dashboard')->extends('components.layouts.teacher');
+})->name('teacher-dashboard');
+
+Route::get('/student-dashboard', function () {
+    return view('livewire.student-dashboard')->extends('components.layouts.student');
+})->name('student-dashboard');
+
+Route::get('/student-report', function () {
+    return view('livewire.student-report')->extends('components.layouts.student');
+})->name('student-report');
+
+Route::get('/student-profile', function () {
+    return view('livewire.student-profile')->extends('components.layouts.student');
+})->name('student-profile');
+
+Route::get('/teacher-report', function () {
+    return view('livewire.teacher-report')->extends('components.layouts.student');
+})->name('teacher-report');
+

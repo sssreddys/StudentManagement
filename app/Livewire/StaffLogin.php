@@ -37,12 +37,12 @@ class StaffLogin extends Component
         if (Auth::guard('staff')->attempt($this->form))
         {
             
-            session()->flash('success', "You are Loggedin successfully!");
-            return redirect(route("staff"));
+            session()->flash('success', "You are Loggedin Successfully!");
+            return redirect(route("teacher-dashboard"));
         }
         else
         {
-            $this->error = "Email or Password wrong!!";
+            $this->error = "Staff ID or Password Wrong!!";
         }
 
     }

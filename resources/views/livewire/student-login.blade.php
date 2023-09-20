@@ -21,8 +21,8 @@
                     </div>
                 @endif
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Staff ID" wire:model="form.std_id"  />
-                    @error("form.std_id")  <p class="pt-2 px-1 text-danger">{{ str_replace('form.std_id', 'Student ID', $message)}}</p>  @enderror
+                    <input type="text" class="form-control" placeholder="Student ID" wire:model="form.std_id"  />
+                    @error("form.std_id")  <p class="pt-2 px-1 text-danger">{{ str_replace('form.std id', 'Student ID', $message)}}</p>  @enderror
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="Password" wire:model="form.password"  />

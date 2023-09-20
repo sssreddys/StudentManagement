@@ -163,7 +163,7 @@
                                 <!-- Your Livewire component content -->
                                 <button type="submit" wire:loading.attr="disabled" class="btn btn-primary">Save</button>
                                 <p wire:loading>Loading...</p>
-                                <p wire:loading.remove>Not loading</p>
+                                <p wire:loading.remove></p>
                             </div>
                             <div wire:debug></div>
                             <style>

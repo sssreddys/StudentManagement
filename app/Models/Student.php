@@ -25,7 +25,6 @@ class Student  extends Authenticatable
         'std_address',
         'std_email',
         'std_nationality',
-        'std_alternate_phone_no',
         'std_aadhar_no',
         'class',
         'religion',

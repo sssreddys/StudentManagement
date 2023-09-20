@@ -1,8 +1,9 @@
 <div class="container mt-5">
     @if (session()->has('stf success'))
-    <div class="stf-success" style="color:green;padding:10px;border-radius:10px;margin:0px;background-color:lightgreen">
-        <b style="text-align: center;"> {{ session('stf success') }}</b>
+    <div class="stf-success" style="width:608px;text-align: center; color: green; padding: 10px; border-radius: 10px; margin: 0 auto; background-color: lightgreen; display: flex; justify-content: center; align-items: center;">
+        <b>{{ session('stf success') }}</b>
     </div>
+
     <script>
         setTimeout(function() {
             document.querySelector('.stf-success').style.display = 'none';
@@ -13,7 +14,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header" style="background-color:indigo">
-                    <h5 class="mb-0" style="text-align: center;color:white">Staff Registration Form</h5>
+                    <h5 class="mb-0" style="text-align: center;color:white;font-family:Montserrat">Staff Registration Form</h5>
                 </div>
                 <div class="card-body">
                     <form wire:submit.prevent="submit" enctype="multipart/form-data">
@@ -25,10 +26,10 @@
                         </div>
 
                         <div class="form-group" style="margin-bottom: 25px;">
-                                    <label for="registration_date">Registration Date</label>
-                                    <input type="date" class="form-control" wire:model="registration_date" max="{{ date('Y-m-d') }}">
-                                    @error('registration_date') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
+                            <label for="registration_date">Registration Date</label>
+                            <input type="date" class="form-control" wire:model="registration_date" max="{{ date('Y-m-d') }}">
+                            @error('registration_date') <span class="text-danger">{{ $message }}</span> @enderror
+                        </div>
 
                         <div class="form-group" style="margin-bottom: 25px;">
                             <label for="registration_number">Registration Number</label>
@@ -63,10 +64,10 @@
                         </div>
 
                         <div class="form-group" style="margin-bottom: 25px;">
-                                    <label for="dob">Date of Birth</label>
-                                    <input type="date" class="form-control" wire:model="dob" max="{{ date('Y-m-d') }}">
-                                    @error('dob') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" class="form-control" wire:model="dob" max="{{ date('Y-m-d') }}">
+                            @error('dob') <span class="text-danger">{{ $message }}</span> @enderror
+                        </div>
 
                         <div class="form-group" style="margin-bottom: 25px;">
                             <label for="phone_no">Phone Number</label>
@@ -90,12 +91,6 @@
                             <label for="nationality">Nationality</label>
                             <input type="text" class="form-control" wire:model="nationality">
                             @error('nationality') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
-
-                        <div class="form-group" style="margin-bottom: 25px;">
-                            <label for="alternate_phone_no">Alternate Phone Number</label>
-                            <input type="text" class="form-control" wire:model="alternate_phone_no">
-                            @error('alternate_phone_no') <span class="text-danger">{{ $message }}</span> @enderror
                         </div>
 
                         <div class="form-group" style="margin-bottom: 25px;">
@@ -151,18 +146,36 @@
                         <div class="form-group">
                             <label for="image">Profile Image</label>
                             <input type="file" class="form-control-file" wire:model="image">
+                            @error('image') <span class="text-danger">{{ $message }}</span> @enderror
+
                         </div>
-                        @error('image') <span class="text-danger">{{ $message }}</span> @enderror
-                        @if ($image)
-                        <img height="50" width="50" src="{{ $image->temporaryUrl() }}" alt="Preview" class="img-preview">
-                        <span>{{ $image->getClientOriginalName() }}</span>
-                        @endif
-                        <div class="text-center mb-4">
-                            <button type="submit" class="btn btn-save" :class="{'btn-primary': !isLoading, 'btn-secondary': isLoading}" wire:loading.attr="disabled" wire:target="submit">
-                                <span wire:loading.remove>Save</span>
-                                <span wire:loading>Loading...</span>
-                            </button>
+                        <div>
+                            @if ($image)
+                            <img height="50" width="50" src="{{ $image->temporaryUrl() }}" alt="Preview" class="img-preview">
+                            <span>{{ $image->getClientOriginalName() }}</span>
+                            @endif
                         </div>
+                        <div style="text-align: center;">
+                                <!-- Your Livewire component content -->
+                                <button type="submit" wire:loading.attr="disabled" class="btn btn-primary">Save</button>
+                                <p wire:loading>Loading...</p>
+                                <p wire:loading.remove>Not loading</p>
+                            </div>
+                            <div wire:debug></div>
+                            <style>
+                                button[wire\:loading] {
+                                    opacity: 0.5;
+                                    /* Reduce opacity during loading */
+                                    cursor: not-allowed;
+                                    /* Change cursor during loading */
+                                }
+
+                                p {
+                                    color: green;
+                                    font-weight: bold;
+                                }
+                            </style>
+
                         <style>
                             /* Custom CSS classes for the "Save" button */
                             .btn-save {

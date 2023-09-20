@@ -23,7 +23,6 @@ return new class extends Migration
                 $table->string('address');
                 $table->string('email')->unique();
                 $table->string('nationality');
-                $table->string('alternate_phone_no');
                 $table->string('aadhar_no')->unique();
                 $table->string('staff_type');
                 $table->string('profession');

@@ -22,7 +22,7 @@ class AdminLogin extends Component
         if (Auth::attempt($this->form))
         {
             
-            session()->flash('success', "You are Loggedin successfully!");
+            session()->flash('success', "You Are LoggedIn Successfully!");
             return redirect(route("home"));
         }
         else

@@ -24,7 +24,6 @@ class Staff extends Authenticatable
         'address',
         'email',
         'nationality',
-        'alternate_phone_no',
         'aadhar_no',
         'staff_type',
         'profession',

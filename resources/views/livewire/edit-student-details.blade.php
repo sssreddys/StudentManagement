@@ -22,7 +22,7 @@
                             {{-- Registration Details --}}
                             <div class="form-group" style="margin-bottom: 25px;">
                                 <label for="registration_date">Registration Date</label>
-                                <input type="date" class="form-control" wire:model="registration_date">
+                                <input type="date" class="form-control" wire:model="registration_date" max="{{ date('Y-m-d') }}">
                                 @error('registration_date') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                             <div class="form-group" style="margin-bottom: 25px;">
@@ -61,7 +61,7 @@
                             {{-- Date of Birth --}}
                             <div class="form-group" style="margin-bottom: 25px;">
                                 <label for="std_dob">Date of Birth</label>
-                                <input type="date" class="form-control" wire:model="std_dob">
+                                <input type="date" class="form-control" wire:model="std_dob" max="{{ date('Y-m-d') }}">
                                 @error('std_dob') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
 
@@ -107,12 +107,6 @@
                                 @error('std_nationality') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
 
-                            {{-- Alternate Phone Number --}}
-                            <div class="form-group" style="margin-bottom: 25px;">
-                                <label for="std_alternate_phone_no">Alternate Phone Number</label>
-                                <input type="text" class="form-control" wire:model="std_alternate_phone_no">
-                                @error('std_alternate_phone_no') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
 
                             {{-- Aadhar Number --}}
                             <div class="form-group" style="margin-bottom: 25px;">
@@ -135,13 +129,6 @@
                                 @error('std_email') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
 
-                            <!-- Password -->
-                            <div class="form-group" style="margin-bottom: 25px;">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" wire:model="password">
-                                @error('password') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-
                             {{-- Upload Student Image --}}
                             <div class="form-group" style="margin-bottom: 25px;">
                                 <label for="student_image">Student Image</label>
@@ -162,12 +149,27 @@
                             </div>
 
 
-                            <div class="text-center mb-4">
-                                <button type="submit" class="btn btn-save" :class="{'btn-primary': !isLoading, 'btn-secondary': isLoading}" wire:loading.attr="disabled" wire:target="update">
-                                    <span wire:loading.remove>Update</span>
-                                    <span wire:loading>Loading...</span>
-                                </button>
+                            <div style="text-align: center;">
+                                <!-- Your Livewire component content -->
+                                <button type="submit" wire:loading.attr="disabled" class="btn btn-primary">Update</button>
+                                <p wire:loading>Loading...</p>
+                                <p wire:loading.remove>Not loading</p>
                             </div>
+                            <div wire:debug></div>
+                            <style>
+                                button[wire\:loading] {
+                                    opacity: 0.5;
+                                    /* Reduce opacity during loading */
+                                    cursor: not-allowed;
+                                    /* Change cursor during loading */
+                                }
+
+                                p {
+                                    color: green;
+                                    font-weight: bold;
+                                }
+                            </style>
+
                         </form>
                     </div>
                 </div>

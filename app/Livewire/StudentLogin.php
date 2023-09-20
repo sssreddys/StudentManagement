@@ -35,12 +35,12 @@ class StudentLogin extends Component
         if (Auth::guard('student')->attempt($this->form))
         {
             
-            session()->flash('success', "You are Loggedin successfully!");
+            session()->flash('success', "You are Loggedin Successfully!");
             return redirect(route("student"));
         }
         else
         {
-            $this->error = "Email or Password wrong!!";
+            $this->error = "Student ID or Password Wrong!!";
         }
 
     }

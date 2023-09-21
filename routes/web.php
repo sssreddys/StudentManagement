@@ -14,6 +14,8 @@ use App\Livewire\StudentReport;
 use App\Livewire\StudentProfile;
 use App\Livewire\TeacherReport;
 use Illuminate\Support\Facades\Route;
+use App\Models\Teacher;
+use App\Livewire\TeachersProfile;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,7 +52,19 @@ Route::get("/register",  \App\Livewire\AdminRegister::class)->name('register');
     Route::get('/EditStaffDetails/{id}', EditStaffDetails::class)->name('edit-staff-details');
     Route::get('/StudentMarksDetails', StudentMarksDetails::class)->name('std-marks-details');
 });
+Route::get('/teachers',function(){
+    return view('teachersdashboard_view');
+   });
+Route::get('/profile',function(){
+    return view('teachersprofile_view');
+   });
+Route::get('/teacher/edit', function () {
+    return view('teachersedit_view',);
+});
 
+
+// Route::get('/TeacherProfile/{id}',TeachersProfile::class)->name('teacher-profile');
+Route::get('/teacher/profile/{id}',TeachersProfile::class)->name('teacher-profile');
 
 
 Route::get('/teacher-dashboard', function () {
@@ -72,4 +86,3 @@ Route::get('/student-profile', function () {
 Route::get('/teacher-report', function () {
     return view('livewire.teacher-report');
 })->name('teacher-report');
-

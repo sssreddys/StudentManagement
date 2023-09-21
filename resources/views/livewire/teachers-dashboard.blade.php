@@ -137,7 +137,7 @@
         <i class="fas fa-bell"></i> 
     </button>
         <button class="nav-link btn" style="color:white" id="messages-button"><i class="fas fa-envelope"></i>
-        <button class="nav-link btn" style="color:white" id="profile-button">
+        <button wire:navigate href="/profile" class="nav-link btn" style="color:white" id="profile-button">
                 <i class="fas fa-user"></i>
             </button>
     </div>
@@ -283,7 +283,7 @@
                                 <td>X</td>
                                 <td>
                                     <div style="display:flex; flex-direction:row; gap:5px;">
-                                    <button style="background-color:#0E1264; border-radius:5px;color:white;border-color:silver; padding:3px; ">Edit</button>
+                                    <button  style="background-color:#0E1264; border-radius:5px;color:white;border-color:silver; padding:3px; ">Edit</button>
                                     <button style="background-color:#0F8405; border-radius:5px;color:white;margin-left:20px;border-color:silver;">Report</button>
                                     </div>
                                 </td>

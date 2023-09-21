@@ -1,103 +1,112 @@
-<style>
-/* CSS for Teacher Profile */
-.profile-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-}
+<div>
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="container" style="height:50px; width: 100%; background-color: #0E1264; color: white;margin-top:10px">
+                            <h3 style="text-align: center;">Edit Profile</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @if (session()->has('message'))
+                            <div class="alert alert-success text-center">{{ session('message') }}</div>
+                        @endif
 
-.profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 20px;
-}
+                        <form wire:submit.prevent="updateTeacher">
+                            <div class="form-group">
+                            <div class="form-group">
+           <label for="image" style="margin-left:170px">Image</label>
+             <input type="file" class="form-control" style="margin-top:20" wire:model="image" />
 
-.profile-header h2 {
-    font-size: 24px;
-    margin: 0;
-}
-
-.profile-header p {
-    color: #666;
-    margin-top: 5px;
-}
-
-.profile-details ul {
-    list-style: none;
-    padding: 0;
-    text-align: left; /* Align details to the left */
-}
-
-.profile-details li {
-    margin: 10px 0;
-}
-
-.profile-details li strong {
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-.profile-footer .btn {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 5px 10px;
-    margin-left: 30px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.profile-footer .btn:hover {
-    background-color: #0056b3;
-}
-</style>
-
-<div class="container" style="width: 40%;">
-    <div class="profile-card">
-        <div class="profile-header" style="margin-top:10px">
-            <div class="container" style="height:50px;width:100%;background-color:#0E1264;color:white">
-                <h3 style="text-align: center;">Teacher's Profile</h3>
+            @if ($image)
+            @if(is_string($image))
+        <img src="{{ asset('storage/' . $image) }}" alt="Teacher Image" class="mt-2" style="max-width: 200px;margin-left:120px" />
+        <span>{{$image}}</span>
+        @else
+        <img src="{{ $image->temporaryUrl() }}"  alt="Temporary Image Preview" style="max-width: 200px; margin-top: 10px; margin-right:20px;" />
+          @endif
+          @endif
+         @error('image')
+        <span class="text-danger" style="font-size: 12.5px;">{{ $message }}</span>
+          @enderror
             </div>
-            <img src="https://pngimg.com/uploads/teacher/teacher_PNG11.png" style="width:70px;height:70px;margin-top:20px" alt="Teacher Profile Picture" class="profile-pic">
-            <h2>Srinija</h2>
-            <p>Mathematics Teacher</p>
-        </div>
-        <div class="profile-details" style="padding-left:80px">
-            <form wire:submit.prevent="updateProfile">
-                <ul>
-                    <li><strong>ID:</strong></li>
-                    <li><strong>Gender:</strong> {{ $gender }}</li>
-                    <li><strong>Date of Birth:</strong> {{ $dateOfBirth }}</li>
-                    <li><strong>Address:</strong>
-                        <input wire:model="address" type="text" class="form-control">
-                        @error('address') <span class="text-danger">{{ $message }}</span> @enderror
-                    </li>
-                    <li><strong>Mobile:</strong>
-                        <input wire:model="mobile" type="text" class="form-control">
-                        @error('mobile') <span class="text-danger">{{ $message }}</span> @enderror
-                    </li>
-                    <li><strong>Email:</strong>
-                        <input wire:model="email" type="email" class="form-control">
-                        @error('email') <span class="text-danger">{{ $message }}</span> @enderror
-                    </li>
-                    <li><strong>Qualification:</strong> {{ $qualification }}</li>
-                    <li><strong>Experience:</strong>
-                        <input wire:model="experience" type="text" class="form-control">
-                        @error('experience') <span class="text-danger">{{ $message }}</span> @enderror
-                    </li>
-                    <li><strong>Remarks:</strong> {{ $remarks }}</li>
-                </ul>
-                <div class="profile-footer">
-                    <button type="submit" class="btn btn-primary" style="background-color:#0E1264">Save Profile</button>
+
+
+                               
+                                <h3 style="margin-left: 170px">{{ $name }}</h3>
+
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" wire:model="email" autocomplete="off" />
+                                    {{-- for validation --}}
+                                    @error('email')
+                                        <span class="text-danger" style="font-size: 12.5px;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="mobile">Mobile</label>
+                                    <input type="mobile" class="form-control" wire:model="mobile" autocomplete="off" />
+                                    {{-- for validation --}}
+                                    @error('mobile')
+                                        <span class="text-danger" style="font-size: 12.5px;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input type="address" class="form-control" wire:model="address" autocomplete="off" />
+                                    {{-- for validation --}}
+                                    @error('address')
+                                        <span class="text-danger" style="font-size: 12.5px;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <input type="gender" class="form-control" wire:model="gender" autocomplete="off" />
+                                    {{-- for validation --}}
+                                    @error('gender')
+                                        <span class="text-danger" style="font-size: 12.5px;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="date_of_birth">Date Of Birth (dd/mm/yyyy)</label>
+                                    <input type="date" class="form-control" wire:model="date_of_birth" autocomplete="off" max="{{date('Y-m-d')}}" />
+                                    {{-- for validation --}}
+                                    @error('date_of_birth')
+                                        <span class="text-danger" style="font-size: 12.5px;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="experience">Experience</label>
+                                    <input type="experience" class="form-control" wire:model="experience" autocomplete="off" />
+                                    {{-- for validation --}}
+                                    @error('experience')
+                                        <span class="text-danger" style="font-size: 12.5px;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="remarks">Remarks</label>
+                                    <input type="remarks" class="form-control" wire:model="remarks" autocomplete="off" />
+                                    {{-- for validation --}}
+                                    @error('remarks')
+                                        <span class="text-danger" style="font-size: 12.5px;">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group text-center">
+                                    <button type="submit" class="btn btn-primary btn-sm w-50" style="background-color: #0E1264; margin-top:30px;">Update Teacher</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
-
-

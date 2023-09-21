@@ -7,7 +7,7 @@
       <title>Document</title>
 
 </head>
-   @livewire('teachers-edit')
+@livewire('teachers-edit', ['id' => 1])
    @livewireScripts
 <body>
 </html>

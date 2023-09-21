@@ -57,34 +57,47 @@
 }
 </style>
 
-<div class="container" style="width: 40%;"> <!-- Adjust container width -->
+<div class="container" style="width: 40%;">
    <!-- Add a title -->
-    <div class="profile-card">
-        <div class="profile-header" style="margin-top:10px">
-         <div class="container" style="height:50px;width:100%;background-color:#0E1264;color:white">
-        <h3 style="text-align: center;">Teacher's Profile</h3>
-             </div>
-             <div >
-            <img src="https://pngimg.com/uploads/teacher/teacher_PNG11.png" style="width:70px;height:70px;margin-top:20px;" alt="Teacher Profile Picture" class="profile-pic">
-            <h2 style="margin-bottom:20px">Srinija</h2>
-            <p>Mathematics Teacher</p>
+   <div class="profile-card">
+        <div class="profile-header">
+       
+            <div class="container" style="height: 50px; width: 100%; background-color: #0E1264; color: white;padding-top:10px">
+            <form wire:submit.prevent="saveData" class="custom-form">
+                <h3 style="text-align: center;">Teacher's Profile</h3>
+            </div>
             <div>
+                @if ($teacher)
+                <img src="{{ asset('storage/' . $teacher->image) }}" alt="Teacher Image" class="mt-2" style="max-width: 200px;margin-left:30px" />
+                <span>{{$image}}</span>
+                    <h2 style="margin-bottom: 20px; margin-left:20px">{{ $teacher->name }}</h2>
+                    <h2 style="margin-bottom: 20px;color:red">{{ $teacher->specialization }}</h2>
+                    <p>{{ $teacher->specialization }}</p>
+                @else
+                    <p>Teacher not found.</p>
+                @endif
+            </div>
         </div>
-        <div class="profile-details" style="padding-left:120px">
-            <ul>
-                <li><strong>ID:</strong> 12345</li>
-                <li><strong>Gender:</strong> Female</li>
-                <li><strong>Date of Birth:</strong> 15-05-1989</li>
-                <li><strong>Address:</strong> Nizamabad </li>
-                <li><strong>Mobile:</strong> 9876546541</li>
-                <li><strong>Email:</strong> srinija@gmail.com</li>
-                <li><strong>Qualification:</strong> Master of Science</li>
-                <li><strong>Experience:</strong> 5 years</li>
-                <li><strong>Remarks:</strong> Excellent teacher with a passion for mathematics.</li>
-            </ul>
+        <div class="profile-details" style="padding-left: 120px;">
+            @if ($teacher)
+                <ul>
+                    <li><strong>ID:</strong> {{ $teacher->id }}</li>
+                    <li><strong>Gender:</strong> {{ $teacher->gender }}</li>
+                    <li><strong>Date of Birth:</strong> {{ $teacher->date_of_birth }}</li>
+                    <li><strong>Address:</strong> {{ $teacher->address }}</li>
+                    <li><strong>Mobile:</strong> {{ $teacher->mobile }}</li>
+                    <li><strong>Email:</strong> {{ $teacher->email }}</li>
+                    <li><strong>Qualification:</strong> {{ $teacher->qualification }}</li>
+                    <li><strong>Experience:</strong> {{ $teacher->experience }} years</li>
+                    <li><strong>Remarks:</strong> {{ $teacher->remarks }}</li>
+                </ul>
+            @endif
         </div>
         <div class="profile-footer">
-            <button class="btn btn-primary" style="background-color:#0E1264">Edit Profile</button>
-        </div>
+                <div class="form-group">
+                    <a href="/teacher/edit">Edit</a>
+<!-- <input type="submit" href="/teacher/edit" class="btn btn-block btn-dark" style="background-color:#0E1264; margin-top:40px; margin-left:10px;width:40px;width:120px" value="Edit Profile" /> -->
+</div>
+                </div>
     </div>
 </div>

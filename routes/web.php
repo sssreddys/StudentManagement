@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Teacher;
+use App\Livewire\TeachersProfile;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +35,14 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/teachers',function(){
     return view('teachersdashboard_view');
    });
-   Route::get('/profile',function(){
+Route::get('/profile',function(){
     return view('teachersprofile_view');
    });
-   Route::get('/edit',function(){
-    return view('teachersedit_view');
-   });
+
+Route::get('/teacher/edit', function () {
+    return view('teachersedit_view',);
+});
+
+
+// Route::get('/TeacherProfile/{id}',TeachersProfile::class)->name('teacher-profile');
+Route::get('/teacher/profile/{id}',TeachersProfile::class)->name('teacher-profile');

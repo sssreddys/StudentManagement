@@ -151,9 +151,38 @@
 
                             <div style="text-align: center;">
                                 <!-- Your Livewire component content -->
-                                <button type="submit" wire:loading.attr="disabled" class="btn btn-primary">Update</button>
+                                <button type="button" wire:loading.attr="disabled" wire:click="confirmUpdate"class="btn btn-primary">Update</button>
+                                @if ($showModal)
+<div class="modal" tabindex="-1" role="dialog" style="display: block;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" >
+            <div class="modal-header" style="background-color:green">
+                <h5 style="padding: 10px;color:white" class="modal-title"><b>Confirm Update</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="cancelUpdate">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align:start;margin:8px;color:black">Are you sure,You want to update this Student Details?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" wire:click="cancelUpdate">Cancel</button>
+                <button type="submit" class="btn btn-success">Yes, Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade show blurred-backdrop"></div>
+@endif
+<style>
+    .blurred-backdrop {
+    backdrop-filter: blur(5px); /* Adjust the blur intensity as needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for transparency */
+}
+
+</style>
                                 <p wire:loading>Loading...</p>
-                                <p wire:loading.remove>Not loading</p>
+                                <p wire:loading.remove></p>
                             </div>
                             <div wire:debug></div>
                             <style>

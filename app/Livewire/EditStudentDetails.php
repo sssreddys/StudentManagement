@@ -31,7 +31,19 @@ class EditStudentDetails extends Component
     public $religion;
     public $student_image;
 
+    public $showModal=false;
+    public function confirmUpdate()
+    {
+        $this->showModal = true;
 
+    }
+
+    public function cancelUpdate()
+    {
+
+        $this->showModal = false;
+
+    }
     public function mount($std_id)
     {
         $this->student = Student::find($std_id);

@@ -54,22 +54,22 @@ Route::get("/register",  \App\Livewire\AdminRegister::class)->name('register');
 
 
 Route::get('/teacher-dashboard', function () {
-    return view('livewire.teacher-dashboard')->extends('components.layouts.teacher');
+    return view('livewire.teacher-dashboard');
 })->name('teacher-dashboard');
 
 Route::get('/student-dashboard', function () {
-    return view('livewire.student-dashboard')->extends('components.layouts.student');
+    return view('livewire.student-dashboard');
 })->name('student-dashboard');
 
 Route::get('/student-report', function () {
-    return view('livewire.student-report')->extends('components.layouts.student');
+    return view('livewire.student-report');
 })->name('student-report');
 
 Route::get('/student-profile', function () {
-    return view('livewire.student-profile')->extends('components.layouts.student');
+    return view('livewire.student-profile');
 })->name('student-profile');
 
 Route::get('/teacher-report', function () {
-    return view('livewire.teacher-report')->extends('components.layouts.student');
+    return view('livewire.teacher-report');
 })->name('teacher-report');
 

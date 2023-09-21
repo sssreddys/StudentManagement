@@ -1,1 +1,1 @@
-<button class="nav-link btn rounded-0 btn-success text-white" wire:click="handleLogout">Logout</button>
+<a href="/AdminLogin"style="color:red;font-family:Montserrat;font-weight:bold"wire:click="handleLogout">LogOut</a>

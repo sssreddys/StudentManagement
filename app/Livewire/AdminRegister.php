@@ -28,7 +28,7 @@ class AdminRegister extends Component
             'password'=>$this->form['password'], 
         ]);
 
-        session()->flash('success', "You are registered successfully!");
+        session()->flash('success', "You Are Registered Successfully!");
         return redirect(route("login"));
     }
 

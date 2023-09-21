@@ -18,14 +18,11 @@ class AdminLogin extends Component
             "form.email"=> 'required|email',
             "form.password"=> "required"
         ]);
-
-
-
-        Auth::attempt($this->form);
+      Auth::attempt($this->form);
         if (Auth::attempt($this->form))
         {
             
-            session()->flash('success', "You are Loggedin successfully!");
+            session()->flash('success', "You Are LoggedIn Successfully!");
             return redirect(route("home"));
         }
         else

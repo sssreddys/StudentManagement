@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get("/login", \App\Livewire\AdminLogin::class)->name('login');
 Route::group(['middleware' => 'checkAuth'], function () {
     Route::get("/AdminLogin",  \App\Livewire\AdminLogin::class)->name('login');
-    
+
     Route::get("/StaffLogin", \App\Livewire\StaffLogin::class)->name('staff');
     Route::get("/StudentLogin", \App\Livewire\StudentLogin::class)->name('student');
 });

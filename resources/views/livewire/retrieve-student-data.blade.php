@@ -73,18 +73,98 @@
                     <td style="text-align: center;font-family:Montserrat">
             @if($student->std_status == 'Active')
             <div style="width: 220px;text-align:center;font-family:Montserrat;">
-            <button class="btn btn-primary">
-                <a style="color: white" href="/EditStudentDetails/{{ $student->std_id }}">Edit</a>
+            <button type="button" style="color: white" wire:click="confirmAlertDialog({{$student->std_id}})" class="btn btn-primary">
+                Edit
             </button>
+            @if ($showAlertDialog)
+<div class="modal" tabindex="-1" role="dialog" style="display: block;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" >
+            <div class="modal-header" style="background-color:blue">
+                <h5 style="padding: 10px;color:white" class="modal-title"><b>Confirm Edit</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="cancelAlertDialog">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="margin-left:8px;text-align:start;color: black;">Are you sure,You want to edit this Student Details?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" wire:click="cancelAlertDialog">Cancel</button>
+                <button class="btn btn-primary" wire:click="edit({{ $student->std_id }})">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade show blurred-backdrop"></div>
+@endif
                 <button class="btn btn-success">Active</button>
-                <button class="btn btn-danger" wire:click="deleteStudent({{ $student->std_id }})">Delete</button>
+                <button class="btn btn-danger" wire:click="confirmDelete({{ $student->std_id }})">Delete</button>   
+                @if ($showModal)
+<div class="modal" tabindex="-1" role="dialog" style="display: block;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" >
+            <div class="modal-header" style="background-color:red">
+                <h5 style="padding: 10px;color:white" class="modal-title"><b>Confirm Delete</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="cancelDelete">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align:start;margin-left:8px;color: black;">Are you sure,You want to delete this Student Data?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" wire:click="cancelDelete">Cancel</button>
+                <button type="button" class="btn btn-danger" wire:click="deleteStudent">Yes, Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade show blurred-backdrop"></div>
+@endif
+<style>
+    .blurred-backdrop {
+    backdrop-filter: blur(5px); /* Adjust the blur intensity as needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for transparency */
+}
+
+</style> 
             </div>
             @else
             <div style="width:220px;text-align:center;font-family:Montserrat;">
             <button class="btn btn-primary" disabled>
               Edit
             </button>
-                <button class="btn btn-danger">Inactive</button>
+            <button wire:click="confirmDialog({{ $student->std_id }})" class="btn btn-danger">Inactive</button>
+                                @if ($showDialog)
+<div class="modal" tabindex="-1" role="dialog" style="display: block;">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" >
+            <div class="modal-header" style="background-color:green">
+                <h5 style="padding: 10px;color:white" class="modal-title"><b>Confirm Active</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="cancelDialog">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align:start;margin-left:8px;color: black;">Are you sure,You want to active this Student Data?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" wire:click="cancelDialog">Cancel</button>
+                <button type="button" class="btn btn-success" wire:click="inactiveToActive">Yes, Active</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade show blurred-backdrop"></div>
+@endif
+<style>
+    .blurred-backdrop {
+    backdrop-filter: blur(5px); /* Adjust the blur intensity as needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for transparency */
+}
+
+</style>
                 <button class="btn btn-danger" disabled>Delete</button>
             </div>
             @endif

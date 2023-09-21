@@ -30,6 +30,33 @@ class EditStaffDetails extends Component
     public $image;
     public $staff;
 
+    public $showModal=false;
+    public $showDialog=false;
+
+    public function confirmDialog()
+    {
+        $this->showDialog = true;
+
+    }
+
+    public function cancelDialog()
+    {
+
+        $this->showDialog = false;
+
+    }
+    public function confirmUpdate()
+    {
+        $this->showModal = true;
+
+    }
+
+    public function cancelUpdate()
+    {
+
+        $this->showModal = false;
+
+    }
     public function mount($id)
     {
 

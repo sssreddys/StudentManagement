@@ -14,6 +14,8 @@ use App\Livewire\StudentReport;
 use App\Livewire\StudentProfile;
 use App\Livewire\TeacherReport;
 use Illuminate\Support\Facades\Route;
+use App\Models\Teacher;
+use App\Livewire\TeachersProfile;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get("/login", \App\Livewire\AdminLogin::class)->name('login');
 Route::group(['middleware' => 'checkAuth'], function () {
     Route::get("/AdminLogin",  \App\Livewire\AdminLogin::class)->name('login');
-    
+
     Route::get("/StaffLogin", \App\Livewire\StaffLogin::class)->name('staff');
     Route::get("/StudentLogin", \App\Livewire\StudentLogin::class)->name('student');
 });
@@ -49,6 +51,7 @@ Route::get("/register",  \App\Livewire\AdminRegister::class)->name('register');
     Route::get('/EditStudentDetails/{std_id}', EditStudentDetails::class)->name('edit-student-details');
     Route::get('/EditStaffDetails/{id}', EditStaffDetails::class)->name('edit-staff-details');
     Route::get('/StudentMarksDetails', StudentMarksDetails::class)->name('std-marks-details');
+    Route::get('/AddStudentMarksDetails', AddStudentMarks::class)->name('add-std-marks-details');
 });
 
 
@@ -72,4 +75,3 @@ Route::get('/student-profile', function () {
 Route::get('/teacher-report', function () {
     return view('livewire.teacher-report');
 })->name('teacher-report');
-

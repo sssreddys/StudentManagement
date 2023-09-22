@@ -5,7 +5,7 @@
         @guest
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" style="width: 100px;">
                     <a style="font-weight:bold" class="nav-link dropdown-toggle" href="#" id="loginDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Login
                     </a>
@@ -57,6 +57,7 @@
         @else
         <a style="color: white; font-family: Montserrat;" href="/StudentRegistration" class="nav-link">Student Registration</a>
         <a style="color: white; font-family: Montserrat;" href="/RetrieveStudentData" class="nav-link">Student Details</a>
+        <a style="color: white; font-family: Montserrat;" href="/AddStudentMarksDetails" class="nav-link">Add Student Marks</a>
         <a style="color: white; font-family: Montserrat;" href="/StudentMarksDetails" class="nav-link">Student Marks Details</a>
         <a style="color: white; font-family: Montserrat;" href="/StaffRegistration" class="nav-link">Staff Registration</a>
         <a style="color: white; font-family: Montserrat;" href="/RetrieveStaffData" class="nav-link">Staff Details</a>

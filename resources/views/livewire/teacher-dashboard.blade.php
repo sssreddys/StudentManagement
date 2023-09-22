@@ -278,9 +278,9 @@
 
         <button class="nav-link btn" style="color:white" id="messages-button"><i class="fas fa-envelope"></i>
 
-        <button wire:navigate href="/profile/{1}" class="nav-link btn" style="color:white" id="profile-button">
+        <button wire:navigate   class="nav-link btn" style="color:white" id="profile-button">
 
-                <i class="fas fa-user"></i>
+                <i href="/profile" class="fas fa-user">lkjhgfdsajhgf</i>
 
             </button>
 
@@ -319,7 +319,7 @@
  
 
     <div class="container">
-    <a href="{{ route('teacher-report') }}">
+    <a href="/teacher-report">
                                  <button class="btn btn-primary" style="background-color: #0E1264; margin-top: 15px; padding: 5px 5px; border: none; border-radius: 5px; color: #fff; font-size: 13px; width: 120px; cursor: pointer; margin:10px;">
                                      Add Marks
                                  </button>

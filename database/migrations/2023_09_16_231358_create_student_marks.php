@@ -27,10 +27,10 @@ return new class extends Migration
             $table->integer('computer_marks');
             $table->integer('total_marks');
             $table->timestamps();
-        
             $table->foreign('student_id')->references('std_id')->on('students');
             $table->foreign('teacher_id')->references('staff_id')->on('staff');
         });
+        
     }
 
     /**

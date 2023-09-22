@@ -1,3 +1,4 @@
+<div>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +89,7 @@ color: #fff;
         <div class="row">
             <div class="col-md-12 mb-4">
                 <div class="input-group">
-                    <input type="number" wire:model="student_id" class="form-control form-control-lg" placeholder="Student Id Number" style="font-size: 12px;" required />
+                    <input type="number" wire:model="student_id" class="form-control form-control-lg" placeholder="Student Id Number" style="font-size: 12px;"  />
                     <!-- Add validation error display here -->
                     <span class="input-group-text" style="background: transparent; border: none; padding: 0; position: absolute; top: 0; right: 0; bottom: 0; margin-right:5px; display: flex; align-items: center; justify-content: center; color:#808080; font-size:14px;"><i class="fa-solid fa-user"></i></span>
                 </div>
@@ -96,7 +97,7 @@ color: #fff;
             </div>
             <div class="col-md-12 mb-4">
                 <div class="input-group">
-                    <input type="number" wire:model="teacher_id" class="form-control form-control-lg" placeholder="Teacher Id Number" style="font-size: 12px;" required />
+                    <input type="number" wire:model="teacher_id" class="form-control form-control-lg" placeholder="Teacher Id Number" style="font-size: 12px;"  />
                     <!-- Add validation error display here -->
                     <span class="input-group-text" style="background: transparent; border: none; padding: 0; position: absolute; top: 0; right: 0; bottom: 0; margin-right:5px; display: flex; align-items: center; justify-content: center; color:#808080; font-size:14px;"><i class="fa-solid fa-user"></i></span>
                 </div>
@@ -104,7 +105,7 @@ color: #fff;
             </div>
             <div class="col-md-12 mb-4">
                 <div class="input-group">
-                    <input type="text" wire:model="student_name" class="form-control form-control-lg" placeholder="Student Name " style="font-size: 12px;" required />
+                    <input type="text" wire:model="student_name" class="form-control form-control-lg" placeholder="Student Name " style="font-size: 12px;"  />
                     <!-- Add validation error display here -->
                     <span class="input-group-text" style="background: transparent; border: none; padding: 0; position: absolute; top: 0; right: 0; bottom: 0; margin-right:5px; display: flex; align-items: center; justify-content: center; color:#808080; font-size:14px;"><i class="fa-solid fa-user"></i></span>
                 </div>
@@ -112,14 +113,14 @@ color: #fff;
             </div>
             <div class="col-md-12 mb-4">
                 <div class="input-group">
-                    <input type="text" wire:model="class" class="form-control form-control-lg" placeholder="Class Here " style="font-size: 12px;" required />
+                    <input type="text" wire:model="class" class="form-control form-control-lg" placeholder="Class Here " style="font-size: 12px;"  />
                 </div>
                 @error('class') <span class="error" style="color: red;">{{ $message }}</span> @enderror
             </div>
 
             <div class="col-md-12 mb-4">
                 <div class="input-group">
-                    <select wire:model="selected_exam" class="form-select form-control-lg" style="font-size: 12px;" required>
+                    <select wire:model="selected_exam" class="form-select form-control-lg" style="font-size: 12px;" >
                         <option value=""  selected>Select Exam</option>
                         <option value="term_1">Term 1</option>
                         <option value="term_2">Term 2</option>
@@ -224,3 +225,5 @@ color: #fff;
     @yield('script')
     </body>
     </html>
+
+</div>

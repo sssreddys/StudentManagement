@@ -52,19 +52,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/EditStaffDetails/{id}', EditStaffDetails::class)->name('edit-staff-details');
     Route::get('/StudentMarksDetails', StudentMarksDetails::class)->name('std-marks-details');
 });
-Route::get('/teachers',function(){
-    return view('teachersdashboard_view');
-   });
-Route::get('/profile',function(){
-    return view('teachersprofile_view');
-   });
-Route::get('/teacher/edit', function () {
-    return view('teachersedit_view',);
+
+Route::middleware(['auth:staff'])->group(function () {
+Route::get('/teacher-profile',TeachersProfile::class)->name('teacher-profile');
+Route::get('/teacher-dashboard',TeacherDashboard::class)->name('teacher-dashboard');
+Route::get('/teacher-report', TeacherReport::class)->name('teacher-report');
+Route::get('/teacher/edit/{id}', TeachersEdit::class)->name('teacher-edit');
 });
 
-
-// Route::get('/TeacherProfile/{id}',TeachersProfile::class)->name('teacher-profile');
-Route::get('/teacher/profile/{id}',TeachersProfile::class)->name('teacher-profile');
 
 
 Route::middleware(['auth:student'])->group(function () {

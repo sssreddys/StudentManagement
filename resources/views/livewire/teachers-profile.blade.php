@@ -67,9 +67,9 @@
                 <h3 style="text-align: center;">Teacher's Profile</h3>
             </div>
             <div>
+                @foreach($teacher as $teacher)
                 @if ($teacher)
-                <img src="{{ asset('storage/' . $teacher->image) }}" alt="Teacher Image" class="mt-2" style="max-width: 200px;margin-left:30px" />
-                <span>{{$image}}</span>
+                <img src="{{ asset('storage/' . $teacher->image_path) }}" alt="Teacher Image" class="mt-2" style="max-width: 200px;margin-left:30px" />
                     <h2 style="margin-bottom: 20px; margin-left:20px">{{ $teacher->name }}</h2>
                     <h2 style="margin-bottom: 20px;color:red">{{ $teacher->specialization }}</h2>
                     <p>{{ $teacher->specialization }}</p>
@@ -81,21 +81,21 @@
         <div class="profile-details" style="padding-left: 120px;">
             @if ($teacher)
                 <ul>
-                    <li><strong>ID:</strong> {{ $teacher->id }}</li>
+                    <li><strong>ID:</strong> {{ $teacher->staff_id }}</li>
                     <li><strong>Gender:</strong> {{ $teacher->gender }}</li>
-                    <li><strong>Date of Birth:</strong> {{ $teacher->date_of_birth }}</li>
+                    <li><strong>Date of Birth:</strong> {{ $teacher->dob }}</li>
                     <li><strong>Address:</strong> {{ $teacher->address }}</li>
-                    <li><strong>Mobile:</strong> {{ $teacher->mobile }}</li>
+                    <li><strong>Mobile:</strong> {{ $teacher->phone_no }}</li>
                     <li><strong>Email:</strong> {{ $teacher->email }}</li>
                     <li><strong>Qualification:</strong> {{ $teacher->qualification }}</li>
-                    <li><strong>Experience:</strong> {{ $teacher->experience }} years</li>
-                    <li><strong>Remarks:</strong> {{ $teacher->remarks }}</li>
+                    <li><strong>Experience:</strong> {{ $teacher->work_experience }} years</li>
                 </ul>
             @endif
         </div>
+        @endforeach
         <div class="profile-footer">
                 <div class="form-group">
-                    <a href="/teacher/edit">Edit</a>
+                    <a href="/teacher/edit/{{$teacher->staff_id}}">Edit</a>
 <!-- <input type="submit" href="/teacher/edit" class="btn btn-block btn-dark" style="background-color:#0E1264; margin-top:40px; margin-left:10px;width:40px;width:120px" value="Edit Profile" /> -->
 </div>
                 </div>

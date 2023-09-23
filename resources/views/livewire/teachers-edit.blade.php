@@ -13,7 +13,7 @@
                             <div class="alert alert-success text-center">{{ session('message') }}</div>
                         @endif
 
-                        <form wire:submit.prevent="updateTeacher">
+                        <form wire:submit.prevent="updateTeacher({{ $teacher}})">
                             <div class="form-group">
                             <div class="form-group">
            <label for="image" style="margin-left:170px">Image</label>
@@ -22,7 +22,6 @@
             @if ($image)
             @if(is_string($image))
         <img src="{{ asset('storage/' . $image) }}" alt="Teacher Image" class="mt-2" style="max-width: 200px;margin-left:120px" />
-        <span>{{$image}}</span>
         @else
         <img src="{{ $image->temporaryUrl() }}"  alt="Temporary Image Preview" style="max-width: 200px; margin-top: 10px; margin-right:20px;" />
           @endif
@@ -34,7 +33,7 @@
 
 
                                
-                                <h3 style="margin-left: 170px">{{ $name }}</h3>
+                                <h3 style="margin-left: 170px">{{ $first_name }}</h3>
 
                                 <div class="form-group">
                                     <label for="email">Email</label>

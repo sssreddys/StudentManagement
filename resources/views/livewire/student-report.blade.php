@@ -1,3 +1,5 @@
+<div>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,14 +128,12 @@
         <a href="{{ route('teacher-dashboard') }}">
             <div class="logo" title="University Management System">
                 <img src="https://png.pngtree.com/png-clipart/20211017/original/pngtree-school-logo-png-image_6851480.png" alt="" style="width:50px; height:50px;">
-                <h2 style="color:white; margin-top:15px; font-weight:600; font-size:1.4rem;">Brilliant School</h2>
+                <h2 style="color:white;margin-top:15px; font-weight:600; font-size:1.4rem;">Brilliant School</h2>
             </div>
         </a>
          <div class="navbar"style="display:flex; flex-direction:row; width:350px; justify-content:center; align-items:center; gap:0px;" >
-             <a href="#">
-                 <span class="material-icons-sharp" onclick="" style="font-weight:600; text-transform:capitalize; font-size:14px;color:white;">logout</span>
-             </a>
              <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/User_icon-cp.svg/1200px-User_icon-cp.svg.png" alt="" style="width:22px; height:25px;"></a>
+             <livewire:logout />
          </div>   
      </header>
     <div class="container" style="margin-top:60px; background: #f8f8ff; padding:30px; border:1px solid #dcdcdc; box-shadow:10px 15px 15px 0 #f5f5f5;">
@@ -372,3 +372,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+</div>

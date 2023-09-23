@@ -1,1 +1,1 @@
-<a href="/AdminLogin"style="color:red;font-family:Montserrat;font-weight:bold"wire:click="handleLogout">LogOut</a>
+<button style="background-color:red;color:white;font-family:Montserrat;font-weight:bold;padding:2px;border-radius:6px;font-size:small" wire:click="handleLogout">LogOut</button>

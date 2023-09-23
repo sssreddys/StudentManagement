@@ -22,10 +22,15 @@
     <livewire:styles />  
 </head>
 
-<body>
-    <livewire:navbar />
-    @livewireScripts
-    {{$slot}}
+<body> 
+@if (auth()->guard('staff')->check())
+   <div></div> <!-- Include staff navigation bar -->
+@elseif (auth()->guard('student')->check())
+   <div></div><!-- Include student navigation bar -->
+@else
+<livewire:navbar /> <!-- Include default guest navigation bar -->
+@endif
+{{$slot}}
+@livewireScripts
 </body>
-
 </html>

@@ -270,10 +270,6 @@
 
     <div style="display:flex;flex-direction:row; justify-content:space-between; width:150px;">
 
-        <button class="nav-link btn" style="color: white;" id="notifications-button">
-
-        <i class="fas fa-bell"></i>
-
     </button>
 
         <button class="nav-link btn" style="color:white" id="messages-button"><i class="fas fa-envelope"></i>
@@ -282,8 +278,8 @@
 
                 <i class="fas fa-user"></i>
 
-            </button>
-
+    </button>
+    <livewire:logout />
     </div>
 
     </nav>

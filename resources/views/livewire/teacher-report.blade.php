@@ -1,3 +1,4 @@
+<div>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -224,3 +225,5 @@ color: #fff;
     @yield('script')
     </body>
     </html>
+
+</div>

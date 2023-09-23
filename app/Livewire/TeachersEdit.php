@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Staff;
 use Livewire\Component;
 use App\Models\Teacher;
 use Carbon\Carbon;
@@ -11,43 +12,26 @@ class TeachersEdit extends Component
 {
 
     use WithFileUploads;
-    public $name, $email, $image,$mobile, $teacher_edit_id, $address, $date_of_birth, $gender, $experience, $qualification, $remarks, $teacher;
+    public $first_name,$last_name,$email, $image,$mobile, $teacher_edit_id, $address, $date_of_birth, $gender, $experience, $qualification, $remarks, $teacher;
         
 
 
     public function mount($id)
     {
-        $this->teacher = Teacher::find($id);
-
-        $this->name = $this->teacher->name;
+        $this->teacher = Staff::find($id);
+        $this->first_name = $this->teacher->first_name;
+        $this->last_name = $this->teacher->last_name;
         $this->email = $this->teacher->email;
-        $this->image = $this->teacher->image;
-        $this->mobile = $this->teacher->mobile;
+        $this->image = $this->teacher->image_path;
+        $this->mobile = $this->teacher->phone_no;
         $this->address = $this->teacher->address;
-        $this->date_of_birth = $this->teacher->date_of_birth;
+        $this->date_of_birth = $this->teacher->dob;
         $this->gender = $this->teacher->gender;
-        $this->experience = $this->teacher->experience;
+        $this->experience = $this->teacher->work_experience;
         $this->qualification = $this->teacher->qualification;
-        $this->remarks = $this->teacher->remarks;
-
-        $this->teacher_edit_id = $this->teacher->id;
     }
 
-    public function updated($fields)
-    {
-        $this->validateOnly($fields, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:teachers,email,' . $this->teacher_edit_id,
-             'image' => 'required|image|unique:teachers,image,' . $this->teacher_edit_id,
-            'mobile' => 'required|numeric|unique:teachers,mobile,' . $this->teacher_edit_id,
-            'address' => 'required|string|unique:teachers,address,' . $this->teacher_edit_id,
-            'date_of_birth' => 'required|date|unique:teachers,date_of_birth,' . $this->teacher_edit_id,
-            'gender' => 'required|string|unique:teachers,gender,' . $this->teacher_edit_id,
-            'experience' => 'required|string|unique:teachers,experience,' . $this->teacher_edit_id,
-            'qualification' => 'required|string|unique:teachers,qualification,' . $this->teacher_edit_id,
-            'remarks' => 'required|string|unique:teachers,remarks,' . $this->teacher_edit_id,
-        ]);
-    }
+   
     public function fileChoosen($image)
     {
         $this->emit('fileChoosen', $this->image);
@@ -64,10 +48,10 @@ class TeachersEdit extends Component
         return $name;
     }
 
-    public function updateTeacher()
+    public function updateTeacher($id)
     {
         $this->validate([
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
             'email' => 'required|email|unique:teachers,email,' . $this->teacher_edit_id,
             'image' => 'required|image|unique:teachers,image,' . $this->teacher_edit_id,
             'mobile' => 'required|numeric|unique:teachers,mobile,' . $this->teacher_edit_id,
@@ -76,12 +60,11 @@ class TeachersEdit extends Component
             'gender' => 'required|string|unique:teachers,gender,' . $this->teacher_edit_id,
             'experience' => 'required|string|unique:teachers,experience,' . $this->teacher_edit_id,
             'qualification' => 'required|string|unique:teachers,qualification,' . $this->teacher_edit_id,
-            'remarks' => 'required|string|unique:teachers,remarks,' . $this->teacher_edit_id,
+            //'remarks' => 'required|string|unique:teachers,remarks,' . $this->teacher_edit_id,
         ]);
     
-        $teacher = Teacher::find($this->teacher_edit_id);
-    
-        $teacher->name = $this->name;
+        $teacher = Staff::find($id);
+        $teacher->name = $this->first_name;
         $teacher->email = $this->email;
         $teacher->mobile = $this->mobile;
         $teacher->address = $this->address;

@@ -14,6 +14,9 @@
     <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="{{ asset('vendor/livewire/livewire.js') }}"></script>
+    <script src="{{ asset('livewire/livewire.js') }}" defer></script>
+@livewireScripts
+
 
 
     <livewire:scripts />

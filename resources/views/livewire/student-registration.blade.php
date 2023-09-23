@@ -115,10 +115,23 @@
                                 </div>
 
                                 <div class="form-group" style="margin-bottom: 25px;">
-                                    <label for="class">Class</label>
-                                    <input type="text" class="form-control" wire:model="class">
-                                    @error('class') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
+    <label for="class">Class</label>
+    <select class="form-control" wire:model="class">
+        <option value="">Select Class</option>
+        <option value="1st">1st</option>
+        <option value="2nd">2nd</option>
+        <option value="3rd">3rd</option>
+        <option value="4th">4th</option>
+        <option value="5th">5th</option>
+        <option value="6th">6th</option>
+        <option value="7th">7th</option>
+        <option value="8th">8th</option>
+        <option value="9th">9th</option>
+        <option value="10th">10th</option>
+    </select>
+    @error('class') <span class="text-danger">{{ $message }}</span> @enderror
+</div>
+
                                 <div class="form-group" style="margin-bottom: 25px;">
                                     <label for="std_email">Email</label>
                                     <input type="email" class="form-control" wire:model="std_email">

@@ -50,7 +50,6 @@ Route::get("/register",  \App\Livewire\AdminRegister::class)->name('register');
     Route::get('/RetrieveStudentData', RetrieveStudentData::class)->name('retrieve-student-data');
     Route::get('/EditStudentDetails/{std_id}', EditStudentDetails::class)->name('edit-student-details');
     Route::get('/EditStaffDetails/{id}', EditStaffDetails::class)->name('edit-staff-details');
-    Route::get('/StudentMarksDetails', StudentMarksDetails::class)->name('std-marks-details');
     Route::get('/AddStudentMarksDetails', AddStudentMarks::class)->name('add-std-marks-details');
 });
 

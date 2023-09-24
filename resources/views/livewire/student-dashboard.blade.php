@@ -1,3 +1,4 @@
+<div>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -521,37 +522,35 @@
              <h2 style="color:white; text-align:center;">Brilliant School</h2>
          </div>
          <div class="navbar"style="display:flex; flex-direction:row; width:250px; justify-content:center; align-items:center; gap:0px;" >
-             <a href="#">
-                 <span class="material-icons-sharp" onclick="" style="font-weight:600; text-transform:capitalize; font-size:14px;color:white;">logout</span>
-             </a>
+         <livewire:logout />
              <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/User_icon-cp.svg/1200px-User_icon-cp.svg.png" alt="" style="width:22px; height:25px;"></a>
          </div>   
      </header>
- 
- 
-     <div class="container" >
+     @foreach ($students as $student)
+  <div class="container" >
          <aside style="border-right: 1px solid 	#dcdcdc;">
              <div class="profile" >
                  <div class="top" >
                      <div class="profile-photo" style="height:90px; width:120px;">
-                         <img src="https://img.freepik.com/premium-vector/3d-man-avatar-happy-smiling-face-icon-young-businessman-student-freelancer_313242-1219.jpg?w=2000" >
+                         <img src="{{ asset('storage/' .$student->student_image_path)}}" alt="Uploaded Image">
                      </div>
+                    
                      <div class="info" style="line-height:1.5; color:black;">
-                         <p>Hey, <b>Divya Bandari</b> </p>
-                         <small class="text-muted">12115153</small>
+                         <p>Hey, <br><b>{{ $student->std_first_name . ' ' . $student->std_last_name }}</b> </p>
+                       <span>Student ID</span>  <small class="text-muted">{{$student->std_id}}</small>
                      </div>
                  </div>
                  <div class="about" style="line-height:1.5;">
                      <h5>Class</h5>
-                     <p>10th class</p>
+                     <p>{{$student->class}}</p>
                      <h5>DOB</h5>
-                     <p>15-Sept-2000</p>
+                     <p> {{date('d-m-Y ', strtotime($student->std_dob))}}</p>
                      <h5>Contact</h5>
-                     <p>9984675874</p>
+                     <p>{{$student->std_phone_no}}</p>
                      <h5>Email</h5>
-                     <p>mahsank111@gmail.com</p>
+                     <p>{{$student->std_email}}</p>
                      <h5>Address</h5>
-                     <p>168, Eden Enclave, Kursi Road, Lucknow</p>
+                     <p>{{$student->std_address}}</p>
                  </div>
              </div>
          </aside>
@@ -563,7 +562,7 @@
                  <div class="updates" >
                  <div class="message" style="display: flex; flex-direction: row; justify-content: center; height:20%; align-items:center;">
                          <div style="flex: 2; display: flex; flex-direction: column; line-height:2; margin-top:10px;">
-                             <strong style="color:#176B87; font-size:14px">Hello Divya</strong>
+                             <strong style="color:#176B87; font-size:14px">Hello {{ $student->std_first_name . ' ' . $student->std_last_name }}</strong>
                              <p>Learning is fun</p>
                              <p>Keep it up and improve your grades to become the best !</p>
                              <a href="{{ route('student-report') }}">
@@ -626,7 +625,7 @@
  
              </div>
  </div>
- 
+ @endforeach
          <div class="right">
              <div class="announcements">
                  <h2>Announcements</h2>
@@ -669,3 +668,4 @@
  
 </body>
 </html>
+</div>

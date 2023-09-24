@@ -270,20 +270,14 @@
 
     <div style="display:flex;flex-direction:row; justify-content:space-between; width:150px;">
 
-        <button class="nav-link btn" style="color: white;" id="notifications-button">
-
-        <i class="fas fa-bell"></i>
-
     </button>
 
-        <button class="nav-link btn" style="color:white" id="messages-button"><i class="fas fa-envelope"></i>
+        <button class="nav-link btn" style="color:white" id="messages-button"><i class="fas fa-envelope"></i></button>
 
-        <button wire:navigate   class="nav-link btn" style="color:white" id="profile-button">
-
-                <i href="/profile" class="fas fa-user">lkjhgfdsajhgf</i>
-
-            </button>
-
+        <a href="/teacher-profile" class="nav-link btn" style="color:white" id="profile-button">
+    <i class="fas fa-user"></i>
+</a>
+    <livewire:logout />
     </div>
 
     </nav>
@@ -706,7 +700,6 @@
 
     crossorigin="anonymous"></script>
 
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 </body>
 

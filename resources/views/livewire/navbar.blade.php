@@ -57,8 +57,6 @@
         @else
         <a style="color: white; font-family: Montserrat;" href="/StudentRegistration" class="nav-link">Student Registration</a>
         <a style="color: white; font-family: Montserrat;" href="/RetrieveStudentData" class="nav-link">Student Details</a>
-        <a style="color: white; font-family: Montserrat;" href="/AddStudentMarksDetails" class="nav-link">Add Student Marks</a>
-        <a style="color: white; font-family: Montserrat;" href="/StudentMarksDetails" class="nav-link">Student Marks Details</a>
         <a style="color: white; font-family: Montserrat;" href="/StaffRegistration" class="nav-link">Staff Registration</a>
         <a style="color: white; font-family: Montserrat;" href="/RetrieveStaffData" class="nav-link">Staff Details</a>
         @endguest

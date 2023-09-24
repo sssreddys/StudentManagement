@@ -7,7 +7,6 @@ use App\Livewire\RetrieveStaffData;
 use App\Livewire\RetrieveStudentData;
 use App\Livewire\StudentRegistration;
 use App\Livewire\StaffRegistration;
-use App\Livewire\StudentMarksDetails;
 use App\Livewire\TeacherDashboard;
 use App\Livewire\StudentDashboard;
 use App\Livewire\StudentReport;
@@ -50,7 +49,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/RetrieveStudentData', RetrieveStudentData::class)->name('retrieve-student-data');
     Route::get('/EditStudentDetails/{std_id}', EditStudentDetails::class)->name('edit-student-details');
     Route::get('/EditStaffDetails/{id}', EditStaffDetails::class)->name('edit-staff-details');
-    Route::get('/StudentMarksDetails', StudentMarksDetails::class)->name('std-marks-details');
 });
 
 Route::middleware(['auth:staff'])->group(function () {

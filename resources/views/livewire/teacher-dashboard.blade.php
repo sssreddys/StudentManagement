@@ -248,8 +248,6 @@
 
 <div class="container-fluid" style="padding: 0; margin: 0;">
 
-    <!-- Navbar -->
-
     <nav class="navbar" style="width: 100%;">
 
         <a class="navbar-brand"  href="/">Brilliant School</a>
@@ -314,12 +312,16 @@
 
     <div class="container">
     <a href="/teacher-report">
-                                 <button class="btn btn-primary" style="background-color: #0E1264; margin-top: 15px; padding: 5px 5px; border: none; border-radius: 5px; color: #fff; font-size: 13px; width: 120px; cursor: pointer; margin:10px;">
-                                     Add Marks
-                                 </button>
-                             </a>
-
-        <div class="row">
+            <button class="btn btn-primary" style="background-color: #0E1264; margin-top: 15px; padding: 5px 5px; border: none; border-radius: 5px; color: #fff; font-size: 13px; width: 120px; cursor: pointer; margin:10px;">
+                Add Marks
+            </button>
+        </a>
+            <a href="/EditStudentMarksDetails">
+                <button class="btn btn-primary" style="background-color: #0E1264; margin-top: 15px; padding: 5px 5px; border: none; border-radius: 5px; color: #fff; font-size: 13px; width: 120px; cursor: pointer; margin:10px;">
+                    Edit Marks
+                </button>
+            </a>
+            <div class="row">
 
             <div class="col-md-4">
 

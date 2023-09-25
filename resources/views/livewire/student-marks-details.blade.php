@@ -47,13 +47,17 @@
                                 <td style="text-align: center;">{{ $student['computerMarks'] }}</td>
                                 <td style="text-align: center;">{{ $student['totalMarks'] }}</td>
                                 <td style="text-align: center;">{{ $student['percentage'] }}</td>
-                                <td style="text-align: center;"><div>
-                                 @if($student['result'] =='Pass')
-                                <button style="background-color: green;border-radius:5px;color:white"> {{ $student['result'] }}</button>
-                                 @else
-                                 <button style="background-color: red;border-radius:5px;color:white"> {{ $student['result'] }}</button>
-                                 @endif
-                                </div></td>
+
+
+                                <td style="text-align: center;">
+                                    <div>
+                                        @if($student['result']== 'Pass')
+                                            <button style="background-color: green; border-radius: 5px; color: white">{{ $student['result'] }}</button>
+                                        @else
+                                            <button style="background-color: red; border-radius: 5px; color: white">{{ $student['result'] }}</button>
+                                        @endif
+                                    </div>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

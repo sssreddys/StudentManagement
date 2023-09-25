@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Models\AddStudentMark;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use App\Models\Student;
@@ -23,7 +22,7 @@ class TeacherReport extends Component
             $rules[ "studentsData.{$index}.studentIds" ] = [
                 'required',
                 'numeric',
-                Rule::unique( 'add_student_marks', 'std_id' )
+                Rule::unique( 'student_marks', 'std_id' )
                 ->ignore( $studentData[ 'studentIds' ] )
             ];
             $rules[ "studentsData.{$index}.studentNames" ] = 'required|string';
@@ -35,15 +34,13 @@ class TeacherReport extends Component
             $rules[ "studentsData.{$index}.socialMarks" ] = 'required|numeric|max:100';
             $rules[ "studentsData.{$index}.computerMarks" ] = 'required|numeric|max:100';
             $rules[ "studentsData.{$index}.totalMarks" ] = 'required|numeric|max:700';
-            $rules[ "studentsData.{$index}.percentage" ] = 'required';
-            $rules[ "studentsData.{$index}.result" ] = 'required|string';
         }
 
         $this->validate( $rules );
 
         try {
             foreach ( $this->studentsData as $index => $studentData ) {
-                AddStudentMark::create( [
+                StudentMarks::create( [
                     'class' => $this->class,
                     'std_id' => $studentData[ 'studentIds' ],
                     'std_name' => $studentData[ 'studentNames' ],
@@ -55,8 +52,7 @@ class TeacherReport extends Component
                     'social_marks' => $studentData[ 'socialMarks' ],
                     'computer_marks' => $studentData[ 'computerMarks' ],
                     'total_marks' => $studentData[ 'totalMarks' ],
-                    'percentage' => $studentData[ 'percentage' ],
-                    'result' => $studentData[ 'result' ],
+    
                 ] );
             }
 
@@ -74,7 +70,7 @@ class TeacherReport extends Component
             'studentsData.*.studentIds' => [
                 'required',
                 'numeric',
-                Rule::unique( 'add_student_marks', 'std_id' )->ignore( $this->studentsData[ $index ][ 'studentIds' ] ),
+                Rule::unique( 'student_marks', 'std_id' )->ignore( $this->studentsData[ $index ][ 'studentIds' ] ),
             ],
 
             'studentsData.' . $index . '.studentNames' => 'required|string',
@@ -86,12 +82,10 @@ class TeacherReport extends Component
             'studentsData.' . $index . '.socialMarks' => 'required|numeric|max:100',
             'studentsData.' . $index . '.computerMarks' => 'required|numeric|max:100',
             'studentsData.' . $index . '.totalMarks' => 'required|numeric|max:700',
-            'studentsData.' . $index . '.percentage' => 'required',
-            'studentsData.' . $index . '.result' => 'required',
         ] );
 
         $studentData = $this->studentsData[ $index ];
-        AddStudentMark::create( [
+        StudentMarks::create( [
             'class' => $this->class,
             'std_id' => $studentData[ 'studentIds' ],
             'std_name' => $studentData[ 'studentNames' ],
@@ -103,8 +97,6 @@ class TeacherReport extends Component
             'social_marks' => $studentData[ 'socialMarks' ],
             'computer_marks' => $studentData[ 'computerMarks' ],
             'total_marks' => $studentData[ 'totalMarks' ],
-            'percentage' => $studentData[ 'percentage' ],
-            'result' => $studentData[ 'result' ],
         ] );
         session()->flash( 'message', 'Student Marks Added Successfully.' );
         return redirect()->to( '/teacher-report' );

@@ -2,6 +2,7 @@
 
 use App\Livewire\EditStaffDetails;
 use App\Livewire\EditStudentDetails;
+use App\Livewire\EditStudentMarks;
 use App\Livewire\RetrieveStaffData;
 use App\Livewire\RetrieveStudentData;
 use App\Livewire\StudentRegistration;
@@ -38,6 +39,7 @@ Route::get('/teacher-profile',TeachersProfile::class)->name('teacher-profile');
 Route::get('/teacher-dashboard',TeacherDashboard::class)->name('teacher-dashboard');
 Route::get('/teacher-report', TeacherReport::class)->name('teacher-report');
 Route::get('/teacher/edit/{id}', TeachersEdit::class)->name('teacher-edit');
+Route::get('/EditStudentMarksDetails', EditStudentMarks::class)->name('edit-std-marks-details');
 });
 
 

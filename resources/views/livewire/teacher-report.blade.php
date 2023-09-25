@@ -6,10 +6,8 @@
     <!-- Ensure Livewire scripts and styles are correctly loaded -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
     <title>livewire</title>
     <livewire:styles/>
 </head>
@@ -22,34 +20,27 @@
     }
     .navbar {
 
-background-color: #0E1264;
+        background-color: #0E1264;
+        width: 100%;
+    }
 
-width: 100%;
+    .navbar-brand {
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        margin-left: 70px;
+    }
 
-}
+    .navbar-toggler-icon {
+        color: #fff;
+    }
 
-
-
-.navbar-brand {
-
-color: white;
-
-font-weight: bold;
-
-font-size: 20px;
-
-margin-left: 70px;
-
-}
-
-
-
-.navbar-toggler-icon {
-
-color: #fff;
-
-}
-
+    
+    /* Make the table responsive */
+    .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+    }
 
 </style>
 <body>
@@ -78,152 +69,186 @@ color: #fff;
 </div>
 
 </nav>
-<div class="card-body mx-auto text-center" style="background: #F8F8FF; width: 40%; display: flex; flex-direction: column; border: 1px solid #DCDCDC; border-radius: 10px; margin:5px;">
-    @if (session()->has('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
+
+<div>
+    <div class="container" style="margin-top: 50px;display:flex;">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <form wire:submit.prevent="saveAllStudents" wire:loading.attr="disabled" wire:target="saveAllStudents">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <h5 style="text-align: center; color: black; font-family: Montserrat"><b>ADD Student Marks</b></h5>
+                            <div class="form-group" style="display: flex; align-items: center;">
+                            <select wire:model="class" wire:change="addStudentRow" class="form-control" style="width: 150px; font-size: 10px;">
+                                <option style="font-size: 10px;" value="">Select Class</option>
+                                @foreach ($classes as $cls)
+                                <option  style="font-size: 10px;" value="{{ $cls }}">{{ $cls }}</option>
+                                @endforeach
+                            </select>
+                            @error('class')
+                            <div class="text-danger" style="font-size: 10px; padding-left: 10px;">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        @if (session()->has('message'))
+                            <div class="std-success" style="width: 100%; text-align: center; color: green; padding: 10px; border-radius: 10px; background-color: lightgreen; margin-top: 5px;">
+                                <b>{{ session('message') }}</b>
+                            </div>
+                            <script>
+                                setTimeout(function() {
+                                    console.log("Hiding message");
+                                    document.querySelector('.std-success').style.display = 'none';
+                                }, 5000);
+                            </script>
+                        @endif
+                            <thead>
+                                <tr style="background-color: #0E128A; color: white">
+                                    <th  style="text-align: center;font-size: 10px;">S.No</th>
+                                    <th  style="text-align: center;font-size: 10px;">Student ID</th>
+                                    <th  style="text-align: center;font-size: 10px;">Student Name</th>
+                                    <th  style="text-align: center;font-size: 10px;">English Marks</th>
+                                    <th  style="text-align: center;font-size: 10px;">Telugu Marks</th>
+                                    <th  style="text-align: center;font-size: 10px;">Maths Marks</th>
+                                    <th  style="text-align: center;font-size: 10px;">Science Marks</th>
+                                    <th  style="text-align: center;font-size: 10px;">Biology Marks</th>
+                                    <th  style="text-align: center;font-size: 10px;">Social Marks</th>
+                                    <th  style="text-align: center;font-size: 10px;">Computer Marks</th>
+                                    <th  style="text-align: center;font-size: 10px;">Calculate</th>
+                                    <th  style="text-align: center;font-size: 10px;">Total Marks</th>
+                                    <th  style="text-align: center;font-size: 10px;">Percentage</th>
+                                    <th  style="text-align: center;font-size: 10px;">Result</th>
+                                    <th  style="text-align: center;font-size: 10px;">Save Marks</th>
+                                </tr>
+                            </thead>
+                            @foreach ($studentsData as $index => $studentData)
+                            <tbody>
+                                <div style="align-items: start; display: flex; justify-content: start; flex-direction: column;">
+                                    @error('class')
+                                    <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    @error('studentsData.' . $index . '.studentIds')
+                                    <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    @error('studentsData.' . $index . '.studentNames')
+                                    <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    @error('studentsData.' . $index . '.englishMarks')
+                                    <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    @error('studentsData.' . $index . '.teluguMarks')
+                                    <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    @error('studentsData.' . $index . '.mathsMarks')
+                                    <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    @error('studentsData.' . $index . '.scienceMarks')
+                                    <span style="font-size: 10px;"  class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    @error('studentsData.' . $index . '.biologyMarks')
+                                    <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    @error('studentsData.' . $index . '.socialMarks')
+                                    <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    @error('studentsData.' . $index . '.computerMarks')
+                                    <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    @error('studentsData.' . $index . '.totalMarks')
+                                    <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    @error('studentsData.' . $index . '.percentage')
+                                    <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    @error('studentsData.' . $index . '.result')
+                                    <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    <tr>
+                                        <td  style="text-align: center;font-size: 10px;">{{ $studentData['serialNo'] }}</td>
+                                        <td   style="text-align: center;">
+                                            <div class="form-group" style="width: 48px;">
+                                                <input style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.studentIds" class="form-control" >
+                                            </div>
+                                        </td>
+                                        <td  style="text-align: center;">
+                                            <div class="form-group" style="width: 92px;">
+                                                <input style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.studentNames" class="form-control" >
+                                            </div>
+                                        </td>
+                                        <td >
+                                            <div class="form-group" style="width: 44px;">
+                                                <input  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 2);" style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.englishMarks" id="studentsData_{{ $index }}_englishMarks" class="form-control">
+                                            </div>
+                                        </td>
+                                        <td >
+                                            <div class="form-group" style="width: 44px;">
+                                                <input  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 2);" style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.teluguMarks" id="studentsData_{{ $index }}_teluguMarks" class="form-control">
+                                            </div>
+                                        </td>
+                                        <td >
+                                            <div class="form-group" style="width: 44px;">
+                                                <input  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 2);" style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.mathsMarks" id="studentsData_{{ $index }}_mathsMarks" class="form-control">
+                                            </div>
+                                        </td>
+                                        <td >
+                                            <div class="form-group" style="width: 44px;">
+                                                <input  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 2);" style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.scienceMarks" id="studentsData_{{ $index }}_scienceMarks" class="form-control">
+                                            </div>
+                                        </td>
+                                        <td >
+                                            <div class="form-group" style="width: 44px;">
+                                                <input  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 2);" style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.biologyMarks" id="studentsData_{{ $index }}_biologyMarks" class="form-control">
+                                            </div>
+                                        </td>
+                                        <td >
+                                            <div class="form-group" style="width: 44px;">
+                                                <input  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 2);" style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.socialMarks" id="studentsData_{{ $index }}_socialMarks" class="form-control">
+                                            </div>
+                                        </td>
+                                        <td >
+                                            <div class="form-group" style="width: 44px;">
+                                                <input  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 2);" style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.computerMarks" id="studentsData_{{ $index }}_computerMarks" class="form-control">
+                                            </div>
+                                        </td>
+                                        <td  style="text-align: center">
+                                            <button style="font-size: 10px;" class="btn btn-primary" style="color: white; border-radius: 5px" type="button" wire:click="calculateTotal({{ $index }})">Total</button>
+                                        </td>
+                                        <td >
+                                            <div class="form-group" style="width: 55px;">
+                                                <input style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.totalMarks" class="form-control" >
+                                            </div>
+                                        </td>
+                                        <td >
+                                            <div class="form-group" style="width: 60px;">
+                                                <input style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.percentage" class="form-control" >
+                                            </div>
+                                        </td>
+                                        <td >
+                                            <div class="form-group" style="width: 50px;">
+                                                <input style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.result" class="form-control" >
+                                            </div>
+                                        </td>
+                                        <td  style="text-align: center">
+                                            <button style="font-size: 10px;" type="button" wire:click="saveStudentMarks({{ $index }})" wire:loading.attr="disabled" class="btn btn-success">Save</button>
+                                        </td>
+                                    </tr>
+                                </div>
+                            </tbody>
+                            @endforeach
+                        </table>
+                    </div>
+                    @if(count($studentsData) > 0)
+                    <div  style="text-align: center;">
+                        <button style="font-size: 10px;" type="submit" class="btn btn-success">Save All</button>
+                    </div>
+                    @else
+                    <div  style="text-align: center; font-size: 10px;background-color: #f0f0f0; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                        <strong>NOTE:</strong> Please select a class before you can add student marks.
+                    </div>
+                    @endif
+                </form>
+            </div>
         </div>
-    @endif
-    <h3 class="text-center mb-5" style="font-weight:600;">Student Marks Entry Form</h3>
-    <form style="font-size: 12px;" wire:submit.prevent="addMarks">
-        <div class="row">
-            <div class="col-md-12 mb-4">
-                <div class="input-group">
-                    <input type="number" wire:model="student_id" class="form-control form-control-lg" placeholder="Student Id Number" style="font-size: 12px;"  />
-                    <!-- Add validation error display here -->
-                    <span class="input-group-text" style="background: transparent; border: none; padding: 0; position: absolute; top: 0; right: 0; bottom: 0; margin-right:5px; display: flex; align-items: center; justify-content: center; color:#808080; font-size:14px;"><i class="fa-solid fa-user"></i></span>
-                </div>
-                @error('student_id') <span class="error" style="color: red;">{{ $message }}</span> @enderror
-            </div>
-            <div class="col-md-12 mb-4">
-                <div class="input-group">
-                    <input type="number" wire:model="teacher_id" class="form-control form-control-lg" placeholder="Teacher Id Number" style="font-size: 12px;"  />
-                    <!-- Add validation error display here -->
-                    <span class="input-group-text" style="background: transparent; border: none; padding: 0; position: absolute; top: 0; right: 0; bottom: 0; margin-right:5px; display: flex; align-items: center; justify-content: center; color:#808080; font-size:14px;"><i class="fa-solid fa-user"></i></span>
-                </div>
-                @error('teacher_id') <span class="error" style="color: red;">{{ $message }}</span> @enderror
-            </div>
-            <div class="col-md-12 mb-4">
-                <div class="input-group">
-                    <input type="text" wire:model="student_name" class="form-control form-control-lg" placeholder="Student Name " style="font-size: 12px;"  />
-                    <!-- Add validation error display here -->
-                    <span class="input-group-text" style="background: transparent; border: none; padding: 0; position: absolute; top: 0; right: 0; bottom: 0; margin-right:5px; display: flex; align-items: center; justify-content: center; color:#808080; font-size:14px;"><i class="fa-solid fa-user"></i></span>
-                </div>
-                @error('student_name') <span class="error" style="color: red;">{{ $message }}</span> @enderror
-            </div>
-            <div class="col-md-12 mb-4">
-                <div class="input-group">
-                    <input type="text" wire:model="class" class="form-control form-control-lg" placeholder="Class Here " style="font-size: 12px;"  />
-                </div>
-                @error('class') <span class="error" style="color: red;">{{ $message }}</span> @enderror
-            </div>
-
-            <div class="col-md-12 mb-4">
-                <div class="input-group">
-                    <select wire:model="selected_exam" class="form-select form-control-lg" style="font-size: 12px;" >
-                        <option value=""  selected>Select Exam</option>
-                        <option value="term_1">Term 1</option>
-                        <option value="term_2">Term 2</option>
-                        <!-- Add other options as needed -->
-                    </select>
-                    <!-- Add validation error display here for selected_exam -->
-                </div>
-                @error('selected_exam') <span class="error" style="color: red;">{{ $message }}</span> @enderror
-            </div>
-
-            <!-- Subject Input Fields -->
-            <div class="col-md-12 mb-4">
-                <div class="input-group">
-                    <input type="number" wire:model="telugu_marks" class="form-control form-control-lg" placeholder="Telugu Marks" style="font-size: 12px;" />
-                </div>
-                <!-- Add validation error display here for telugu -->
-                @error('telugu_marks') <span class="error" style="color: red;">{{ $message }}</span> @enderror
-            </div>
-
-            <div class="col-md-12 mb-4">
-                <div class="input-group">
-                    <input type="number" wire:model="english_marks" class="form-control form-control-lg" placeholder="English Marks" style="font-size: 12px;" />
-                </div>
-                <!-- Add validation error display here for english -->
-                @error('english_marks') <span class="error" style="color: red;">{{ $message }}</span> @enderror
-            </div>
-            <div class="col-md-12 mb-4">
-                <div class="input-group">
-                    <input type="number" wire:model="maths_marks" class="form-control form-control-lg" placeholder="Maths Marks" style="font-size: 12px;" />
-                </div>
-                <!-- Add validation error display here for english -->
-                @error('maths_marks') <span class="error" style="color: red;">{{ $message }}</span> @enderror
-            </div>
-            <div class="col-md-12 mb-4">
-                <div class="input-group">
-                    <input type="number" wire:model="science_marks" class="form-control form-control-lg" placeholder="Science Marks" style="font-size: 12px;" />
-                </div>
-                <!-- Add validation error display here for english -->
-                @error('science_marks') <span class="error" style="color: red;">{{ $message }}</span> @enderror
-            </div>
-            <div class="col-md-12 mb-4">
-                <div class="input-group">
-                    <input type="number" wire:model="social_marks" class="form-control form-control-lg" placeholder="Social Marks" style="font-size: 12px;" />
-                </div>
-                <!-- Add validation error display here for english -->
-                @error('social_marks') <span class="error" style="color: red;">{{ $message }}</span> @enderror
-            </div>
-            <div class="col-md-12 mb-4">
-                <div class="input-group">
-                    <input type="number" wire:model="hindi_marks" class="form-control form-control-lg" placeholder="Hindhi Marks" style="font-size: 12px;" />
-                </div>
-                <!-- Add validation error display here for hindhi -->
-                @error('hindhi') <span class="error" style="color: red;">{{ $message }}</span> @enderror
-            </div>
-            <div class="col-md-12 mb-4">
-                <div class="input-group">
-                    <input type="number" wire:model="computer_marks" class="form-control form-control-lg" placeholder="Computer Marks" style="font-size: 12px;" />
-                </div>
-                <!-- Add validation error display here for biology -->
-                @error('computer_marks') <span class="error" style="color: red;">{{ $message }}</span> @enderror
-            </div>
-
-            <div class="col-md-12 mb-4">
-                <div class="input-group">
-                    <input type="number" wire:model="biology_marks" class="form-control form-control-lg" placeholder="Biology Marks" style="font-size: 12px;" />
-                </div>
-                <!-- Add validation error display here for biology -->
-                @error('biology_marks') <span class="error" style="color: red;">{{ $message }}</span> @enderror
-            </div>
-
-            <div class="col-md-12 d-grid">
-                <button type="submit" class="btn " style="height: 35px; line-height: 25px; padding: 0; background:#0E1264 ;border:none;color:white; width:150px;">Submit</button>
-            </div>
-
-            @if (session()->has('message'))
-                <script>
-                    Swal.fire({
-                        title: 'Success!',
-                        text: '{{ session('message') }}',
-                        icon: 'success',
-                        confirmButtonText: 'OK',
-                    }).then(() => {
-                        // Optionally, you can close the modal or perform other actions here
-                    });
-                </script>
-            @endif
-        </div>
-    </form>
+    </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.5.0/js/bootstrap.bundle.min.js"></script>
-
-
-
-
-</script>
-
-    @livewireScripts
-    @yield('script')
-    </body>
-    </html>
-
+</body>
+</html>
 </div>

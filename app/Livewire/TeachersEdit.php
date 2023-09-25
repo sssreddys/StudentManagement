@@ -151,6 +151,7 @@ class TeachersEdit extends Component
      
     
         session()->flash('message', 'Staff has been updated successfully');
+        return redirect()->to('/teacher-profile');
     
     }
     

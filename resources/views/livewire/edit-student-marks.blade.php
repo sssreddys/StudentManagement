@@ -153,7 +153,12 @@
                                     @error('studentsData.' . $index . '.totalMarks')
                                     <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
                                     @enderror
-                            
+                                    @error('studentsData.' . $index . '.percentage')
+                                    <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    @error('studentsData.' . $index . '.result')
+                                    <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <tr>
                                         <td  style="text-align: center;font-size: 10px;">{{ $studentData['serialNo'] }}</td>
                                         <td   style="text-align: center;">
@@ -168,12 +173,12 @@
                                         </td>
                                         <td >
                                             <div class="form-group" style="width: 44px;">
-                                                <input  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 3);" style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.englishMarks" id="studentsData_{{ $index }}_englishMarks" class="form-control" >
+                                                <input  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 3);" style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.englishMarks" id="studentsData_{{ $index }}_englishMarks" wire:key="englishMarks_{{ $index }}" class="form-control" wire:ignore>
                                             </div>
                                         </td>
                                         <td >
                                             <div class="form-group" style="width: 44px;">
-                                                <input  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 3);" style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.teluguMarks" id="studentsData_{{ $index }}_teluguMarks" class="form-control">
+                                                <input  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 3);" style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.teluguMarks" id="studentsData_{{ $index }}_teluguMarks" class="form-control" wire:ignore>
                                             </div>
                                         </td>
                                         <td >

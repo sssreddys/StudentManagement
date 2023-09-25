@@ -85,9 +85,12 @@
                                 <option  style="font-size: 10px;" value="{{ $cls }}">{{ $cls }}</option>
                                 @endforeach
                             </select>
-                            @error('class')
-                            <div class="text-danger" style="font-size: 10px; padding-left: 10px;">{{ $message }}</div>
-                            @enderror
+                            <select wire:model="examType" class="form-control" style="width: 150px; font-size: 10px;margin-left:20px">
+                            <option style="font-size: 10px;" value="">Select Exam Type</option>
+                            @foreach ($staticExamTypes as $type)
+                                <option style="font-size: 10px;" value="{{ $type }}">{{ $type }}</option>
+                            @endforeach
+                            </select>
                         </div>
                         @if (session()->has('message'))
                             <div class="std-success" style="width: 100%; text-align: center; color: green; padding: 10px; border-radius: 10px; background-color: lightgreen; margin-top: 5px;">
@@ -124,6 +127,9 @@
                                 <div style="align-items: start; display: flex; justify-content: start; flex-direction: column;">
                                     @error('class')
                                     <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    @error('examType')
+                                    <div class="text-danger" style="font-size: 10px; padding-left: 10px;">{{ $message }}</div>
                                     @enderror
                                     @error('studentsData.' . $index . '.studentIds')
                                     <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>

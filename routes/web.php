@@ -1,6 +1,5 @@
 <?php
 
-use App\Livewire\AddStudentMarks;
 use App\Livewire\EditStaffDetails;
 use App\Livewire\EditStudentDetails;
 use App\Livewire\RetrieveStaffData;
@@ -9,31 +8,13 @@ use App\Livewire\StudentRegistration;
 use App\Livewire\StaffRegistration;
 use App\Livewire\TeacherDashboard;
 use App\Livewire\StudentDashboard;
+use App\Livewire\StudentMarksDetails;
 use App\Livewire\StudentReport;
-use App\Livewire\StudentProfile;
 use App\Livewire\TeacherReport;
 use App\Livewire\TeachersEdit;
 use Illuminate\Support\Facades\Route;
-use App\Models\Teacher;
 use App\Livewire\TeachersProfile;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get("/", \App\Livewire\Home::class)->name('home');
-// Route::get("/register", \App\Livewire\AdminRegister::class)->name('register');
-// Route::get("/login", \App\Livewire\AdminLogin::class)->name('login');
 Route::group(['middleware' => 'checkAuth'], function () {
     Route::get("/AdminLogin",  \App\Livewire\AdminLogin::class)->name('login');
     Route::get("/StaffLogin", \App\Livewire\StaffLogin::class)->name('staff');
@@ -49,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/RetrieveStudentData', RetrieveStudentData::class)->name('retrieve-student-data');
     Route::get('/EditStudentDetails/{std_id}', EditStudentDetails::class)->name('edit-student-details');
     Route::get('/EditStaffDetails/{id}', EditStaffDetails::class)->name('edit-staff-details');
+    Route::get('/StudentMarksDetails', StudentMarksDetails::class)->name('std-marks-details');
 });
 
 Route::middleware(['auth:staff'])->group(function () {

@@ -21,5 +21,6 @@ class AddStudentMark extends Model
         'computer_marks',
         'total_marks',
         'percentage',
+        'result',
     ];
 }

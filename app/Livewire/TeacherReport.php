@@ -2,124 +2,208 @@
 
 namespace App\Livewire;
 
+use App\Models\AddStudentMark;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
+use App\Models\Student;
 use App\Models\StudentMarks;
 use Livewire\WithFileUploads;
 class TeacherReport extends Component
 {
-    use WithFileUploads;
-    public $student_id;
+    public $class;
+    public $classes = [];
+    public $studentsData = [];
 
-    public $selected_exam;
+    public function saveAllStudents() {
+        $rules = [
+            'class' => 'required|string',
+        ];
 
-    public $telugu_marks;
+        foreach ( $this->studentsData as $index => $studentData ) {
+            $rules[ "studentsData.{$index}.studentIds" ] = [
+                'required',
+                'numeric',
+                Rule::unique( 'add_student_marks', 'std_id' )
+                ->ignore( $studentData[ 'studentIds' ] )
+            ];
+            $rules[ "studentsData.{$index}.studentNames" ] = 'required|string';
+            $rules[ "studentsData.{$index}.englishMarks" ] = 'required|numeric|max:100';
+            $rules[ "studentsData.{$index}.teluguMarks" ] = 'required|numeric|max:100';
+            $rules[ "studentsData.{$index}.mathsMarks" ] = 'required|numeric|max:100';
+            $rules[ "studentsData.{$index}.scienceMarks" ] = 'required|numeric|max:100';
+            $rules[ "studentsData.{$index}.biologyMarks" ] = 'required|numeric|max:100';
+            $rules[ "studentsData.{$index}.socialMarks" ] = 'required|numeric|max:100';
+            $rules[ "studentsData.{$index}.computerMarks" ] = 'required|numeric|max:100';
+            $rules[ "studentsData.{$index}.totalMarks" ] = 'required|numeric|max:700';
+            $rules[ "studentsData.{$index}.percentage" ] = 'required';
+            $rules[ "studentsData.{$index}.result" ] = 'required|string';
+        }
 
-    public $english_marks;
+        $this->validate( $rules );
 
-    public $maths_marks;
+        try {
+            foreach ( $this->studentsData as $index => $studentData ) {
+                AddStudentMark::create( [
+                    'class' => $this->class,
+                    'std_id' => $studentData[ 'studentIds' ],
+                    'std_name' => $studentData[ 'studentNames' ],
+                    'eng_marks' => $studentData[ 'englishMarks' ],
+                    'tel_marks' => $studentData[ 'teluguMarks' ],
+                    'maths_marks' => $studentData[ 'mathsMarks' ],
+                    'science_marks' => $studentData[ 'scienceMarks' ],
+                    'biology_marks' => $studentData[ 'biologyMarks' ],
+                    'social_marks' => $studentData[ 'socialMarks' ],
+                    'computer_marks' => $studentData[ 'computerMarks' ],
+                    'total_marks' => $studentData[ 'totalMarks' ],
+                    'percentage' => $studentData[ 'percentage' ],
+                    'result' => $studentData[ 'result' ],
+                ] );
+            }
 
-    public $science_marks;
-
-    public $social_marks;
-
-    public $hindi_marks;
-
- 
-
-    protected $rules = [
-
-        'student_id' => 'required|integer',
-
-        'selected_exam' => 'required|string',
-
-        'telugu_marks' => 'nullable|numeric',
-
-        'english_marks' => 'nullable|numeric',
-
-        'maths_marks' => 'nullable|numeric',
-
-        'science_marks' => 'nullable|numeric',
-
-        'social_marks' => 'nullable|numeric',
-
-        'hindi_marks' => 'nullable|numeric',
-
-    ];
-
- 
-
-    public function addMarks()
-
-    {
-
-    
-        $this->validate();
-
- 
-
-        // Create a new StudentMark record
-
-        StudentMarks::create([
-
-            'student_id' => $this->student_id,
-
-            'selected_exam' => $this->selected_exam,
-
-            'telugu_marks' => $this->telugu_marks,
-
-            'english_marks' => $this->english_marks,
-
-            'maths_marks' => $this->maths_marks,
-
-            'science_marks' => $this->science_marks,
-
-            'social_marks' => $this->social_marks,
-
-            'hindi_marks' => $this->hindi_marks,
-
-        ]);
-
-             
-
-              // Clear the form fields
-
- 
-
-              $this->reset();
-
-              $this->selected_exam="";
-
-              $this->telugu_marks="";
-
-              $this->english_marks="";
-
-              $this->maths_marks="";
-
-              $this->science_marks="";
-
-              $this->social_marks="";
-
-              $this->hindi_marks="";
-
- 
-
-              // Optionally, you can add a success message here
-
-              session()->flash('message', 'Marks added successfully!');
-
-          }
-
-         
-
-    public function updated($propertyName)
-
-    {
-
-        $this->validateOnly($propertyName);
-
+            session()->flash( 'message', 'All Students\' Marks Added Successfully.');
+        return redirect()->to('/teacher-report');
+    } catch (\Exception $e) {
+        session()->flash('error', 'An error occurred while saving students\' marks: ' . $e->getMessage() );
+        }
     }
+
+    public function saveStudentMarks( $index ) {
+
+        $this->validate( [
+            'class' => 'required|string',
+            'studentsData.*.studentIds' => [
+                'required',
+                'numeric',
+                Rule::unique( 'add_student_marks', 'std_id' )->ignore( $this->studentsData[ $index ][ 'studentIds' ] ),
+            ],
+
+            'studentsData.' . $index . '.studentNames' => 'required|string',
+            'studentsData.' . $index . '.englishMarks' => 'required|numeric|max:100',
+            'studentsData.' . $index . '.teluguMarks' => 'required|numeric|max:100',
+            'studentsData.' . $index . '.mathsMarks' => 'required|numeric|max:100',
+            'studentsData.' . $index . '.scienceMarks' => 'required|numeric|max:100',
+            'studentsData.' . $index . '.biologyMarks' => 'required|numeric|max:100',
+            'studentsData.' . $index . '.socialMarks' => 'required|numeric|max:100',
+            'studentsData.' . $index . '.computerMarks' => 'required|numeric|max:100',
+            'studentsData.' . $index . '.totalMarks' => 'required|numeric|max:700',
+            'studentsData.' . $index . '.percentage' => 'required',
+            'studentsData.' . $index . '.result' => 'required',
+        ] );
+
+        $studentData = $this->studentsData[ $index ];
+        AddStudentMark::create( [
+            'class' => $this->class,
+            'std_id' => $studentData[ 'studentIds' ],
+            'std_name' => $studentData[ 'studentNames' ],
+            'eng_marks' => $studentData[ 'englishMarks' ],
+            'tel_marks' => $studentData[ 'teluguMarks' ],
+            'maths_marks' => $studentData[ 'mathsMarks' ],
+            'science_marks' => $studentData[ 'scienceMarks' ],
+            'biology_marks' => $studentData[ 'biologyMarks' ],
+            'social_marks' => $studentData[ 'socialMarks' ],
+            'computer_marks' => $studentData[ 'computerMarks' ],
+            'total_marks' => $studentData[ 'totalMarks' ],
+            'percentage' => $studentData[ 'percentage' ],
+            'result' => $studentData[ 'result' ],
+        ] );
+        session()->flash( 'message', 'Student Marks Added Successfully.' );
+        return redirect()->to( '/teacher-report' );
+    }
+
+    public function addStudentRow() {
+        $this->studentsData[] = [
+            'studentIds' => null,
+            'studentNames' => null,
+            'englishMarks' => null,
+            'teluguMarks' => null,
+            'mathsMarks' => null,
+            'scienceMarks' => null,
+            'biologyMarks' => null,
+            'socialMarks' => null,
+            'computerMarks' => null,
+            'totalMarks' => null,
+            'percentage' => null,
+            'result'=>null,
+        ];
+    }
+
+    public function calculateTotal( $index ) {
+        $studentData = $this->studentsData[ $index ];
+        $totalMarks = array_sum( [
+            $studentData[ 'englishMarks' ],
+            $studentData[ 'teluguMarks' ],
+            $studentData[ 'mathsMarks' ],
+            $studentData[ 'scienceMarks' ],
+            $studentData[ 'biologyMarks' ],
+            $studentData[ 'socialMarks' ],
+            $studentData[ 'computerMarks' ],
+        ] );
+
+        $this->studentsData[ $index ][ 'totalMarks' ] = $totalMarks;
+        $percentage = ( $totalMarks / 700 ) * 100;
+        $this->studentsData[ $index ][ 'percentage' ] = number_format( $percentage, 2 );
+        if ($totalMarks < 245||( $studentData[ 'englishMarks' ]<35|| $studentData[ 'teluguMarks' ]<35||
+        $studentData[ 'mathsMarks' ]<35||$studentData[ 'scienceMarks' ]<35|| $studentData[ 'biologyMarks' ]<35
+        ||$studentData[ 'socialMarks' ]<35||$studentData[ 'computerMarks' ]<35)) {
+            $this->studentsData[ $index ][ 'result' ] = 'Fail'; 
+        } else {
+            $this->studentsData[ $index ][ 'result' ] = 'Pass';
+   
+        }
+        $this->skipRender();
+    }
+    
     public function render()
     {
+        $this->classes = Student::distinct('class')
+            ->pluck('class')
+            ->toArray();
+    
+        $this->classes = collect($this->classes)->sortBy(function ($class) {
+            return $this->customSort($class);
+        })->values()->toArray();
+    
+        if (!empty($this->class)) {
+            $students = Student::where('class', $this->class)->get();
+    
+            $this->studentsData = [];
+    
+            $counter = 1; 
+    
+            foreach ($students as $student) {
+                $this->studentsData[] = [
+                    'serialNo' => $counter, 
+                    'studentIds' => $student->std_id,
+                    'studentNames' => $student->std_first_name,
+                    'englishMarks' => null,
+                    'teluguMarks' => null,
+                    'mathsMarks' => null,
+                    'scienceMarks' => null,
+                    'biologyMarks' => null,
+                    'socialMarks' => null,
+                    'computerMarks' => null,
+                    'totalMarks' => null,
+                    'percentage' => null,
+                    'result' => null,
+                ];
+    
+                $counter++; // Increment the counter
+            }
+        } else {
+            $this->studentsData = [];
+        }
+    
         return view('livewire.teacher-report');
     }
+    
+    function customSort($class) {
+        preg_match('/(\d+)(\w+)/', $class, $matches);
+        if (count($matches) === 3) {
+            $numericPart = intval($matches[1]);
+            $ordinalPart = $matches[2];
+            return [$numericPart, $ordinalPart];
+        }
+        return $class;
+    }
+    
 }

@@ -522,8 +522,8 @@
              <h2 style="color:white; text-align:center;">Brilliant School</h2>
          </div>
          <div class="navbar"style="display:flex; flex-direction:row; width:250px; justify-content:center; align-items:center; gap:0px;" >
-         <livewire:logout />
-             <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/User_icon-cp.svg/1200px-User_icon-cp.svg.png" alt="" style="width:22px; height:25px;"></a>
+       <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/User_icon-cp.svg/1200px-User_icon-cp.svg.png" alt="" style="width:22px; height:25px;"></a>
+             <livewire:logout />
          </div>   
      </header>
      @foreach ($students as $student)

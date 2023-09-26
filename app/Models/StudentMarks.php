@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AddStudentMark extends Model
+class StudentMarks extends Model
 {
     use HasFactory;
     protected $fillable = [
         'class',
+        'examType',
         'std_id',
         'std_name',
         'eng_marks',
@@ -20,7 +21,5 @@ class AddStudentMark extends Model
         'social_marks',
         'computer_marks',
         'total_marks',
-        'percentage',
-        'result',
     ];
 }

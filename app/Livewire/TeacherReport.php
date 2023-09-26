@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Models\AddStudentMark;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use App\Models\Student;
@@ -11,21 +10,31 @@ use Livewire\WithFileUploads;
 class TeacherReport extends Component
 {
     public $class;
+    public $examType;
     public $classes = [];
     public $studentsData = [];
 
+    public $staticExamTypes = [
+        'Unit 1', 'Unit 2', 'Unit 3', 'Unit 4', 'Quarterly', 'Half-Yearly', 'Annual',
+    ];
+
+    
     public function saveAllStudents() {
         $rules = [
             'class' => 'required|string',
+            'examType' => 'required|string',
         ];
-
-        foreach ( $this->studentsData as $index => $studentData ) {
-            $rules[ "studentsData.{$index}.studentIds" ] = [
-                'required',
-                'numeric',
-                Rule::unique( 'add_student_marks', 'std_id' )
-                ->ignore( $studentData[ 'studentIds' ] )
-            ];
+            foreach ( $this->studentsData as $index => $studentData ) {
+                $rules["studentsData.{$index}.studentIds"] = [
+                    'required',
+                    'numeric',
+                    Rule::unique('student_marks', 'std_id')
+                        ->where(function ($query) use ($studentData) {
+                            $query->where('std_id', $studentData['studentIds'])
+                                ->where('examType', $this->examType);
+                        })
+                        ->ignore($studentData['studentIds']),
+                ];
             $rules[ "studentsData.{$index}.studentNames" ] = 'required|string';
             $rules[ "studentsData.{$index}.englishMarks" ] = 'required|numeric|max:100';
             $rules[ "studentsData.{$index}.teluguMarks" ] = 'required|numeric|max:100';
@@ -35,16 +44,15 @@ class TeacherReport extends Component
             $rules[ "studentsData.{$index}.socialMarks" ] = 'required|numeric|max:100';
             $rules[ "studentsData.{$index}.computerMarks" ] = 'required|numeric|max:100';
             $rules[ "studentsData.{$index}.totalMarks" ] = 'required|numeric|max:700';
-            $rules[ "studentsData.{$index}.percentage" ] = 'required';
-            $rules[ "studentsData.{$index}.result" ] = 'required|string';
         }
 
         $this->validate( $rules );
 
         try {
             foreach ( $this->studentsData as $index => $studentData ) {
-                AddStudentMark::create( [
+                StudentMarks::create( [
                     'class' => $this->class,
+                    'examType' => $this->examType,
                     'std_id' => $studentData[ 'studentIds' ],
                     'std_name' => $studentData[ 'studentNames' ],
                     'eng_marks' => $studentData[ 'englishMarks' ],
@@ -55,8 +63,7 @@ class TeacherReport extends Component
                     'social_marks' => $studentData[ 'socialMarks' ],
                     'computer_marks' => $studentData[ 'computerMarks' ],
                     'total_marks' => $studentData[ 'totalMarks' ],
-                    'percentage' => $studentData[ 'percentage' ],
-                    'result' => $studentData[ 'result' ],
+    
                 ] );
             }
 
@@ -68,15 +75,20 @@ class TeacherReport extends Component
     }
 
     public function saveStudentMarks( $index ) {
-
-        $this->validate( [
-            'class' => 'required|string',
-            'studentsData.*.studentIds' => [
-                'required',
-                'numeric',
-                Rule::unique( 'add_student_marks', 'std_id' )->ignore( $this->studentsData[ $index ][ 'studentIds' ] ),
-            ],
-
+        $studentData = $this->studentsData[$index];
+        $this->validate([
+        'class' => 'required|string',
+        'examType' => 'required|string',
+        "studentsData.{$index}.studentIds" => [
+            'required',
+            'numeric',
+            Rule::unique('student_marks', 'std_id')
+                ->where(function ($query) use ($studentData) {
+                    $query->where('std_id', $studentData['studentIds'])
+                        ->where('examType', $this->examType);
+                })
+                ->ignore($studentData['studentIds']),
+        ],
             'studentsData.' . $index . '.studentNames' => 'required|string',
             'studentsData.' . $index . '.englishMarks' => 'required|numeric|max:100',
             'studentsData.' . $index . '.teluguMarks' => 'required|numeric|max:100',
@@ -86,13 +98,12 @@ class TeacherReport extends Component
             'studentsData.' . $index . '.socialMarks' => 'required|numeric|max:100',
             'studentsData.' . $index . '.computerMarks' => 'required|numeric|max:100',
             'studentsData.' . $index . '.totalMarks' => 'required|numeric|max:700',
-            'studentsData.' . $index . '.percentage' => 'required',
-            'studentsData.' . $index . '.result' => 'required',
-        ] );
+        ]);
 
         $studentData = $this->studentsData[ $index ];
-        AddStudentMark::create( [
+        StudentMarks::create( [
             'class' => $this->class,
+            'examType' => $this->examType,
             'std_id' => $studentData[ 'studentIds' ],
             'std_name' => $studentData[ 'studentNames' ],
             'eng_marks' => $studentData[ 'englishMarks' ],
@@ -103,8 +114,6 @@ class TeacherReport extends Component
             'social_marks' => $studentData[ 'socialMarks' ],
             'computer_marks' => $studentData[ 'computerMarks' ],
             'total_marks' => $studentData[ 'totalMarks' ],
-            'percentage' => $studentData[ 'percentage' ],
-            'result' => $studentData[ 'result' ],
         ] );
         session()->flash( 'message', 'Student Marks Added Successfully.' );
         return redirect()->to( '/teacher-report' );

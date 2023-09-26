@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('add_student_marks', function (Blueprint $table) {
+        Schema::create('student_marks', function (Blueprint $table) {
                 $table->id();
                 $table->string('class');
+                $table->string('examType');
                 $table->unsignedBigInteger('std_id');
                 $table->string('std_name');
                 $table->integer('eng_marks');
@@ -24,11 +25,8 @@ return new class extends Migration
                 $table->integer('social_marks');
                 $table->integer('computer_marks');
                 $table->integer('total_marks');
-                $table->decimal('percentage', 5, 2);
-                $table->string('result');
                 $table->timestamps();
-                $table->foreign('std_id')->references('std_id')->on('students');                  
-                                     
+                $table->foreign('std_id')->references('std_id')->on('students');                                             
         });
     }
 

@@ -75,7 +75,6 @@ class EditStudentDetails extends Component
 
         if ($this->student) {
 
-            // Update only the fields that were changed
             $this->student->update(array_filter([
                 'registration_date' => $this->registration_date,
                 'registration_number' => $this->registration_number,

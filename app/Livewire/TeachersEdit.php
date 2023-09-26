@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Staff;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use App\Models\Teacher;
 use Carbon\Carbon;

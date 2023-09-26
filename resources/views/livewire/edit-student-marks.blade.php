@@ -6,8 +6,6 @@
     <!-- Ensure Livewire scripts and styles are correctly loaded -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <title>livewire</title>
     <livewire:styles/>
 </head>
@@ -74,10 +72,10 @@
     <div class="container" style="margin-top: 50px;display:flex;">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <form wire:submit.prevent="saveAllStudents" wire:loading.attr="disabled" wire:target="saveAllStudents">
+                <form wire:submit.prevent="editAllStudentMarks" wire:loading.attr="disabled" wire:target="saveAllStudents">
                     <div class="table-responsive">
                         <table class="table table-bordered">
-                            <h5 style="text-align: center; color: black; font-family: Montserrat"><b>ADD Student Marks</b></h5>
+                            <h5 style="text-align: center; color: black; font-family: Montserrat"><b>Edit Student Marks</b></h5>
                             <div class="form-group" style="display: flex; align-items: center;">
                             <select wire:model="class" wire:change="addStudentRow" class="form-control" style="width: 150px; font-size: 10px;">
                                 <option style="font-size: 10px;" value="">Select Class</option>
@@ -85,12 +83,9 @@
                                 <option  style="font-size: 10px;" value="{{ $cls }}">{{ $cls }}</option>
                                 @endforeach
                             </select>
-                            <select wire:model="examType" class="form-control" style="width: 150px; font-size: 10px;margin-left:20px">
-                            <option style="font-size: 10px;" value="">Select Exam Type</option>
-                            @foreach ($staticExamTypes as $type)
-                                <option style="font-size: 10px;" value="{{ $type }}">{{ $type }}</option>
-                            @endforeach
-                            </select>
+                            @error('class')
+                            <div class="text-danger" style="font-size: 10px; padding-left: 10px;">{{ $message }}</div>
+                            @enderror
                         </div>
                         @if (session()->has('message'))
                             <div class="std-success" style="width: 100%; text-align: center; color: green; padding: 10px; border-radius: 10px; background-color: lightgreen; margin-top: 5px;">
@@ -119,7 +114,7 @@
                                     <th  style="text-align: center;font-size: 10px;">Total Marks</th>
                                     <th  style="text-align: center;font-size: 10px;">Percentage</th>
                                     <th  style="text-align: center;font-size: 10px;">Result</th>
-                                    <th  style="text-align: center;font-size: 10px;">Save Marks</th>
+                                    <th  style="text-align: center;font-size: 10px;">Edit Marks</th>
                                 </tr>
                             </thead>
                             @foreach ($studentsData as $index => $studentData)
@@ -127,9 +122,6 @@
                                 <div style="align-items: start; display: flex; justify-content: start; flex-direction: column;">
                                     @error('class')
                                     <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                    @error('examType')
-                                    <div class="text-danger" style="font-size: 10px; padding-left: 10px;">{{ $message }}</div>
                                     @enderror
                                     @error('studentsData.' . $index . '.studentIds')
                                     <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
@@ -161,7 +153,12 @@
                                     @error('studentsData.' . $index . '.totalMarks')
                                     <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
                                     @enderror
-                            
+                                    @error('studentsData.' . $index . '.percentage')
+                                    <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    @error('studentsData.' . $index . '.result')
+                                    <span style="font-size: 10px;" class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <tr>
                                         <td  style="text-align: center;font-size: 10px;">{{ $studentData['serialNo'] }}</td>
                                         <td   style="text-align: center;">
@@ -176,12 +173,12 @@
                                         </td>
                                         <td >
                                             <div class="form-group" style="width: 44px;">
-                                                <input  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 3);" style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.englishMarks" id="studentsData_{{ $index }}_englishMarks" class="form-control">
+                                                <input  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 3);" style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.englishMarks" id="studentsData_{{ $index }}_englishMarks" wire:key="englishMarks_{{ $index }}" class="form-control" wire:ignore>
                                             </div>
                                         </td>
                                         <td >
                                             <div class="form-group" style="width: 44px;">
-                                                <input  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 3);" style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.teluguMarks" id="studentsData_{{ $index }}_teluguMarks" class="form-control">
+                                                <input  oninput="this.value = this.value.replace(/[^0-9]/g, '').substring(0, 3);" style="font-size: 10px;" type="text" wire:model="studentsData.{{ $index }}.teluguMarks" id="studentsData_{{ $index }}_teluguMarks" class="form-control" wire:ignore>
                                             </div>
                                         </td>
                                         <td >
@@ -210,7 +207,7 @@
                                             </div>
                                         </td>
                                         <td  style="text-align: center">
-                                            <button style="font-size: 10px;" class="btn btn-primary" style="color: white; border-radius: 5px" type="button" wire:click="calculateTotal({{ $index }})">Total</button>
+                                            <button style="background-color:green;color: white; border-radius: 5px;font-size: 10px;" type="button" wire:click="calculateTotal({{ $index }})">Total</button>
                                         </td>
                                         <td >
                                             <div class="form-group" style="width: 55px;">
@@ -228,7 +225,7 @@
                                             </div>
                                         </td>
                                         <td  style="text-align: center">
-                                            <button style="font-size: 10px;" type="button" wire:click="saveStudentMarks({{ $index }})" wire:loading.attr="disabled" class="btn btn-success">Save</button>
+                                            <button style="font-size: 10px;" type="button" wire:click="editStudentMarks({{ $index }})" class="btn btn-primary">Edit</button>
                                         </td>
                                     </tr>
                                 </div>
@@ -238,11 +235,11 @@
                     </div>
                     @if(count($studentsData) > 0)
                     <div  style="text-align: center;">
-                        <button style="font-size: 10px;" type="submit" class="btn btn-success">Save All</button>
+                        <button style="font-size: 10px;" type="button"  type="button" wire:click="editAllStudentMarks" class="btn btn-primary">Edit All</button>
                     </div>
                     @else
                     <div  style="text-align: center; font-size: 10px;background-color: #f0f0f0; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-                        <strong>NOTE:</strong> Please select a class before you can add student marks.
+                        <strong>NOTE:</strong> Please select a class before you can edit student marks.
                     </div>
                     @endif
                 </form>

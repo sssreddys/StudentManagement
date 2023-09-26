@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\ClassTimetable;
 use App\Livewire\EditStaffDetails;
 use App\Livewire\EditStudentDetails;
 use App\Livewire\RetrieveStaffData;
@@ -31,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/EditStudentDetails/{std_id}', EditStudentDetails::class)->name('edit-student-details');
     Route::get('/EditStaffDetails/{id}', EditStaffDetails::class)->name('edit-staff-details');
     Route::get('/StudentMarksDetails', StudentMarksDetails::class)->name('std-marks-details');
+    Route::get('/ClassTimeTable', ClassTimetable::class)->name('ClassTimeTable');
 });
 
 Route::middleware(['auth:staff'])->group(function () {

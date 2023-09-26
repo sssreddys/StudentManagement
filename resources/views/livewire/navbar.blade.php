@@ -61,6 +61,7 @@
         <a style="color: white; font-family: Montserrat;" href="/StudentMarksDetails" class="nav-link">Student Marks Details</a>
         <a style="color: white; font-family: Montserrat;" href="/StaffRegistration" class="nav-link">Staff Registration</a>
         <a style="color: white; font-family: Montserrat;" href="/RetrieveStaffData" class="nav-link">Staff Details</a>
+        <a style="color: white; font-family: Montserrat;" href="/ClassTimeTable" class="nav-link">Time Table</a>
         @endguest
     </div>
 </nav>

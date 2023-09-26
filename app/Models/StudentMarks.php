@@ -10,6 +10,7 @@ class StudentMarks extends Model
     use HasFactory;
     protected $fillable = [
         'class',
+        'examType',
         'std_id',
         'std_name',
         'eng_marks',

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('student_marks', function (Blueprint $table) {
                 $table->id();
                 $table->string('class');
+                $table->string('examType');
                 $table->unsignedBigInteger('std_id');
                 $table->string('std_name');
                 $table->integer('eng_marks');
@@ -25,8 +26,7 @@ return new class extends Migration
                 $table->integer('computer_marks');
                 $table->integer('total_marks');
                 $table->timestamps();
-                $table->foreign('std_id')->references('std_id')->on('students');                  
-                                     
+                $table->foreign('std_id')->references('std_id')->on('students');                                             
         });
     }
 
